@@ -2,10 +2,9 @@ import {Commands} from "./commands.js";
 
 /**
  * Main app object, with all app methods
- * @param nom
  * @constructor
  */
-function App(nom) {
+function App() {
     // Constructor
     console.log("Loading app...")
     this.commands = new Commands();
@@ -13,19 +12,36 @@ function App(nom) {
 
     /**
      * Method call when user send a message
-     * @param message user message
+     * @param message Message sent by user
      */
     this.sendUserMessage = function(message) {
         this.messageList.push(message);
+        this.displayUserMessage(message);
     };
 
     /**
+     * Display user message
+     * @param message Given message
+     */
+    this.displayUserMessage = function (message){
+
+    }
+
+    /**
      * Method call when bot send a message
-     * @param message bot message
+     * @param message Message sent by bot
      */
     this.sendBotMessage = function(message) {
-
+        this.displayBotMessage(message);
     };
+
+    /**
+     * Display bot message
+     * @param message Given message
+     */
+    this.displayBotMessage = function (message){
+
+    }
 
     /**
      * Get message list with filter apply
@@ -50,3 +66,4 @@ app.sendUserMessage("Yolo")
 app.sendUserMessage("Test")
 app.sendUserMessage("oe")
 console.log(app.getMessageListWithFilter(""))
+app.commands.parse("/background color")
