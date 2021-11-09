@@ -6,6 +6,7 @@ function Commands() {
     /**
      * Execute right function from given message
      * @param message Given message
+     * @return {number} 0: executed; 1: unknown; 2: not enough arguments; 3: not a command
      */
     this.parse = function(message){
         // If message is a command
@@ -18,9 +19,17 @@ function Commands() {
                 if(commandArgs.length >= this.commandsList[commandName]["argsCount"]){
                     // Execute command
                     this.commandsList[commandName]["executor"](commandArgs);
+                    return 0;
+                }else{
+                    return 2;
                 }
+            }else{
+                return 1;
             }
+        }else{
+            return 3;
         }
+
     };
 
     /**
