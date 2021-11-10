@@ -7,6 +7,10 @@ body {
 	display: flex;
 }
 
+div {
+	margin: 0;
+}
+
 input {
 	flex: 1;
 }
@@ -16,6 +20,7 @@ input {
 	margin-bottom: 4%;
 	flex: 1;
 	background-color: rgb(119, 136, 153);
+	display: flex;
 }
 
 #help {
@@ -27,22 +32,28 @@ input {
 	margin-left: 5%;
 	margin-right: 5%;
 	flex-flow: column;
+	flex-direction: column;
 }
 
 #chat {
 	flex: auto;
 	display: flex;
 	flex-flow: column;
+	flex-direction: column;
 	order: 1;
+	transform: scaleX(-1) rotate(180deg);
 }
 
 #input {
 	display: flex;
 	order: 2;
+	margin-top: auto;
 }
-.msg {
+.message {
 	order: 1;
+	transform: scaleX(-1) rotate(180deg);
 }
+
 .user, .bot {
 	display: flex;
 }
