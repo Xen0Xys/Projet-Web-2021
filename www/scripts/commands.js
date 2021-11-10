@@ -1,11 +1,11 @@
 /**
  * Command object
- * @param app App object
+ * @param _app App object
  * @constructor
  */
-function Commands(app) {
+function Commands(_app) {
     // Constructor
-    this.app = app;
+    const app = _app;
 
     /**
      * Execute right function from given message
@@ -71,6 +71,13 @@ function Commands(app) {
     };
 
     // Commands executors
+    this.debugCommand = function (args){
+        let message = "Message template!"
+        if(args.length >= 1){
+            message = args[0]
+        }
+        app.sendBotMessage(message)
+    }
     /**
      * Change global background color
      * @param args Arguments
@@ -117,6 +124,7 @@ function Commands(app) {
 
     // Command list
     this.commandsList = {
+        "/debug": {"argsCount": 0, "executor": this.debugCommand},
         "/background": {"argsCount": 1, "executor": this.backgroundCommand},
         "/messageColor": {"argsCount": 1, "executor": this.messageColorCommand},
         "/messageSize": {"argsCount": 1, "executor": this.messageSizeCommand},
