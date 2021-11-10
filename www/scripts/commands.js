@@ -72,7 +72,7 @@ function Commands(app) {
 
     // Commands executors
     this.backgroundCommand = function (args){
-
+        document.body.style.background = args[0];
     };
     this.messageColorCommand = function (args){
 

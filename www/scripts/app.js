@@ -18,6 +18,7 @@ function App() {
     this.sendUserMessage = function(content) {
         let message = new Message(content, "user", new Date().getTime());
         this.messageList.push(message);
+        this.commands.parse(message.content);
         this.displayUserMessage(message);
     };
 
@@ -72,4 +73,4 @@ app.sendUserMessage("oe")
 console.log(app.getMessageListWithFilter(""))
 let message = app.getMessageListWithFilter("")[0]
 console.log(message.getSendingTimeString())
-console.log(app.commands.parse("/background color"))
+console.log(app.commands.parse("/background"))
