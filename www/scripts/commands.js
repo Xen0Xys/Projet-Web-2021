@@ -83,28 +83,33 @@ function Commands(_app) {
      * @param args Arguments
      */
     this.backgroundCommand = function (args){
-        document.body.style.background = args[0];
+        document.getElementById("help").style.background = args[0];
+        document.getElementById("chatbox").style.background = args[0];
     };
     /**
      * Change message color
      * @param args Arguments
      */
     this.messageColorCommand = function (args){
-
+        document.getElementById("chat").style.color = args[0];
     };
     /**
      * Change message size
      * @param args Arguments
      */
     this.messageSizeCommand = function (args){
-
+        document.getElementById("chat").style.fontSize = args[0] + "px";
     };
     /**
      * Change message background color
      * @param args Arguments
      */
     this.messageBackgroundCommand = function (args){
-
+        app.messageBackground = args[0];
+        let elements = document.getElementsByClassName("message");
+        for(let i = 0; i < elements.length; i++){
+            elements[i].style.background = args[0];
+        }
     };
     /**
      * Clear all messages
@@ -119,7 +124,15 @@ function Commands(_app) {
      * @param args Arguments
      */
     this.resetCommand = function (args){
-        document.body.style.background = "";
+        document.getElementById("help").style.background = "";
+        document.getElementById("chatbox").style.background = "";
+        document.getElementById("chat").style.color = "";
+        document.getElementById("chat").style.fontSize = "";
+
+        let elements = document.getElementsByClassName("message");
+        for(let i = 0; i < elements.length; i++){
+            elements[i].style.background = "";
+        }
     };
 
     // Command list
