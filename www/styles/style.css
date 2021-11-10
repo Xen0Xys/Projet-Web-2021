@@ -1,4 +1,6 @@
-body,html {height: 100%}
+body,html {
+	height: 99%;
+}
 body {
 	column-gap: 10px;
 	background-color: rgb(43, 45, 46);
@@ -10,15 +12,20 @@ input {
 }
 
 #help,#chatbox {
+	margin-top: 4%;
+	margin-bottom: 4%;
 	flex: 1;
 	background-color: rgb(119, 136, 153);
-	height: 80%;
 }
+
 #help {
-	max-width: 20%;
+	margin-left: 5%;
+	max-width: 30%;
 }
 
 #chatbox {
+	margin-left: 5%;
+	margin-right: 5%;
 	flex-flow: column;
 }
 
