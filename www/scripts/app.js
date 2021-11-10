@@ -1,4 +1,5 @@
 import {Commands} from "./commands.js";
+import {Message} from "./message.js";
 
 /**
  * Main app object, with all app methods
@@ -12,9 +13,10 @@ function App() {
 
     /**
      * Method call when user send a message
-     * @param message Message sent by user
+     * @param content Message sent by user
      */
-    this.sendUserMessage = function(message) {
+    this.sendUserMessage = function(content) {
+        let message = new Message(content, "user", new Date().getTime());
         this.messageList.push(message);
         this.displayUserMessage(message);
     };
@@ -29,9 +31,11 @@ function App() {
 
     /**
      * Method call when bot send a message
-     * @param message Message sent by bot
+     * @param content Message sent by bot
      */
-    this.sendBotMessage = function(message) {
+    this.sendBotMessage = function(content) {
+        let message = new Message(content, "bot", new Date().getTime());
+        this.messageList.push(message);
         this.displayBotMessage(message);
     };
 
@@ -51,7 +55,7 @@ function App() {
     this.getMessageListWithFilter = function(filter){
         const filteredMessageList = [];
         for(let i=0; i<this.messageList.length; i++){
-            if(this.messageList[i].includes(filter)){
+            if(this.messageList[i].content.includes(filter)){
                 filteredMessageList.push(this.messageList[i]);
             }
         }
@@ -66,4 +70,6 @@ app.sendUserMessage("Yolo")
 app.sendUserMessage("Test")
 app.sendUserMessage("oe")
 console.log(app.getMessageListWithFilter(""))
+let message = app.getMessageListWithFilter("")[0]
+console.log(message.getSendingTimeString())
 console.log(app.commands.parse("/background color"))
