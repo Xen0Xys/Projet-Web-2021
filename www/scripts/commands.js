@@ -1,8 +1,12 @@
 /**
- * Commands object
+ * Command object
+ * @param app App object
  * @constructor
  */
-function Commands() {
+function Commands(app) {
+    // Constructor
+    this.app = app;
+
     /**
      * Execute right function from given message
      * @param message Given message
@@ -68,12 +72,32 @@ function Commands() {
 
     // Commands executors
     this.backgroundCommand = function (args){
-        console.log(args);
+
+    };
+    this.messageColorCommand = function (args){
+
+    };
+    this.messageSizeCommand = function (args){
+
+    };
+    this.messageBackgroundCommand = function (args){
+
+    };
+    this.clearCommand = function (args){
+
+    };
+    this.resetCommand = function (args){
+
     };
 
     // Command list
     this.commandsList = {
-        "/background": {"argsCount": 1, "executor": this.backgroundCommand}
+        "/background": {"argsCount": 1, "executor": this.backgroundCommand},
+        "/messageColor": {"argsCount": 1, "executor": this.messageColorCommand},
+        "/messageSize": {"argsCount": 1, "executor": this.messageSizeCommand},
+        "/messageBackground": {"argsCount": 1, "executor": this.messageBackgroundCommand},
+        "/clear": {"argsCount": 0, "executor": this.clearCommand},
+        "/reset": {"argsCount": 0, "executor": this.resetCommand}
     };
 }
 

@@ -8,7 +8,7 @@ import {Message} from "./message.js";
 function App() {
     // Constructor
     console.log("Loading app...")
-    this.commands = new Commands();
+    this.commands = new Commands(this);
     this.messageList = [];
 
     /**
