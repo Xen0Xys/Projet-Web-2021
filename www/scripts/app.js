@@ -10,6 +10,7 @@ function App() {
     console.log("Loading app...")
     this.commands = new Commands(this);
     this.messageList = [];
+    this.messageBackground = "";
 
     /**
      * Method call when user send a message
@@ -18,8 +19,8 @@ function App() {
     this.sendUserMessage = function(content) {
         let message = new Message(content, "user", new Date().getTime());
         this.messageList.push(message);
-        this.commands.parse(message.content);
         this.displayMessage(message);
+        this.commands.parse(message.content);
     };
 
     this.displayMessage = function (message){
@@ -31,6 +32,10 @@ function App() {
         // Add classes to div
         newDiv.classList.add(message.sender);
         newDiv.classList.add("message");
+        // Set message background color
+        if(this.messageBackground !== ""){
+            newDiv.style.background = this.messageBackground;
+        }
         // Add new element to DOM
         const parentDiv = document.getElementById('void');
         document.getElementById("chat").insertBefore(newDiv, parentDiv);
@@ -96,6 +101,8 @@ window.useMe = function useMe() {
 
 window.sendMessage = function (){
     let element = document.getElementById("send");
-    app.sendUserMessage(element.value);
-    element.value = "";
+    if(element.value !== ""){
+        app.sendUserMessage(element.value);
+        element.value = "";
+    }
 }
