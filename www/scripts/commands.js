@@ -71,23 +71,48 @@ function Commands(app) {
     };
 
     // Commands executors
+    /**
+     * Change global background color
+     * @param args Arguments
+     */
     this.backgroundCommand = function (args){
         document.body.style.background = args[0];
     };
+    /**
+     * Change message color
+     * @param args Arguments
+     */
     this.messageColorCommand = function (args){
 
     };
+    /**
+     * Change message size
+     * @param args Arguments
+     */
     this.messageSizeCommand = function (args){
 
     };
+    /**
+     * Change message background color
+     * @param args Arguments
+     */
     this.messageBackgroundCommand = function (args){
 
     };
+    /**
+     * Clear all messages
+     * @param args Arguments
+     */
     this.clearCommand = function (args){
-
+        app.messageList = [];
+        document.querySelectorAll('.message').forEach(e => e.remove());
     };
+    /**
+     * Reset all changes
+     * @param args Arguments
+     */
     this.resetCommand = function (args){
-
+        document.body.style.background = "";
     };
 
     // Command list

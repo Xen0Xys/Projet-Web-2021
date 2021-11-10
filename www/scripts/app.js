@@ -74,3 +74,10 @@ console.log(app.getMessageListWithFilter(""))
 let message = app.getMessageListWithFilter("")[0]
 console.log(message.getSendingTimeString())
 console.log(app.commands.parse("/background"))
+
+/*
+// Define global function
+window.onClick = function onClick(){
+    app.sendUserMessage("/clear")
+}
+*/
