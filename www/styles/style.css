@@ -1,0 +1,50 @@
+body,html {height: 100%}
+body {
+	column-gap: 10px;
+	background-color: rgb(43, 45, 46);
+	display: flex;
+}
+
+input {
+	flex: 1;
+}
+
+#help,#chatbox {
+	flex: 1;
+	background-color: rgb(119, 136, 153);
+	height: 80%;
+}
+#help {
+	max-width: 20%;
+}
+
+#chatbox {
+	flex-flow: column;
+}
+
+#chat {
+	flex: auto;
+	display: flex;
+	flex-flow: column;
+	order: 1;
+}
+
+#input {
+	display: flex;
+	order: 2;
+}
+.msg {
+	order: 1;
+}
+.user, .bot {
+	display: flex;
+}
+.user {
+	align-self: flex-end;
+	background-color: rgb(51, 51, 204);
+}
+
+.bot {
+	align-self: flex-start;
+	background-color: rgb(204, 204, 204);
+}
