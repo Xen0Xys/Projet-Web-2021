@@ -80,6 +80,7 @@ console.log(message.getSendingTimeString())
 console.log(app.commands.parse("/background"))
  */
 
+// Functions
 window.useMe = function useMe() {
     switch (document.getElementById("help").style.display) {
         case "none":
@@ -106,3 +107,14 @@ window.sendMessage = function (){
         element.value = "";
     }
 }
+
+// Events
+document.getElementById("send").addEventListener("keydown", function(event) {
+    switch (event.key){
+        case "Enter":
+            sendMessage()
+            break;
+        case "ArrowUp":
+            break;
+    }
+})
