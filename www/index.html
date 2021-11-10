@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script type="module" src="scripts/app.js"></script>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="A web project for our evaluation in 'Programmation Web 1 / Automne'"/>
+	<link rel="stylesheet" href="styles/style.css"/>
+	<script type="text/javascript" src="scripts/script.js"></script>
+	<script type="module" src="scripts/app.js"></script>
+	<link rel="icon" href="image/chatbot-icon.svg"/>
+	<title>Chatbot</title>
 </head>
 <body>
-
+	<div id="help" style="display: none">
+		yousk2
+	</div>
+	<div id="chatbox">
+		<div id="chat">
+			<div class="user msg">I'm the user</div>
+			<div class="bot msg">I'm the bot</div>
+			<div id="void"></div>
+		</div>
+		<div id="input">
+			<button onclick="useMe()">Aide</button>
+			<input id="send" type="text"/>
+			<button onclick="chat()">Envoie</button>
+		</div>
+	</div>
 </body>
 </html>
