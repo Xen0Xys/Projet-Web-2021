@@ -1,6 +1,7 @@
 body,html {
 	height: 99%;
 }
+
 body {
 	column-gap: 10px;
 	background-color: rgb(43, 45, 46);
@@ -41,7 +42,7 @@ input {
 	flex-flow: column;
 	flex-direction: column;
 	order: 1;
-	transform: scaleX(-1) rotate(180deg);
+	transform: rotateY(-180deg) rotateZ(180deg) rotateX(-180deg);
 }
 
 #input {
@@ -49,14 +50,16 @@ input {
 	order: 2;
 	margin-top: auto;
 }
+
 .message {
 	order: 1;
-	transform: scaleX(-1) rotate(180deg);
+	transform: rotateY(180deg) rotateZ(180deg) rotateX(180deg);
 }
 
 .user, .bot {
 	display: flex;
 }
+
 .user {
 	align-self: flex-end;
 	background-color: rgb(51, 51, 204);
