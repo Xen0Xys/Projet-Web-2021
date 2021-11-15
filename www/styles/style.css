@@ -23,6 +23,7 @@ input {
 #help {
 	margin-left: 5%;
 	max-width: 30%;
+	flex-direction: column;
 }
 
 #chatbox {

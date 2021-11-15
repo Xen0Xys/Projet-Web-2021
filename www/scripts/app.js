@@ -118,3 +118,29 @@ document.getElementById("send").addEventListener("keydown", function(event) {
             break;
     }
 })
+
+window.helpClicked = function (event){
+    for(const [key, value] of Object.entries(app.commands.commandsList)){
+        if(value !== "" && event.target.textContent === (value["description"])){
+            document.getElementById("send").value = key;
+        }
+    }
+}
+
+// Display command help:
+for(const [key, value] of Object.entries(app.commands.commandsList)){
+    // Create new div element
+    const newDiv = document.createElement("a");
+    newDiv.href = "#";
+    newDiv.onclick = helpClicked;
+    // Give it text content
+    const newContent = document.createTextNode(value["description"]);
+    newDiv.appendChild(newContent);
+    // Add classes to div
+    newDiv.classList.add("help");
+    // Add new element to DOM
+    const parentDiv = document.getElementById('help_parent');
+    document.getElementById("help").insertBefore(newDiv, parentDiv);
+}
+
+useMe()
