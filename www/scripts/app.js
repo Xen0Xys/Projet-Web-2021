@@ -10,6 +10,7 @@ function App() {
     console.log("Loading app...")
     this.commands = new Commands(this);
     this.messageList = [];
+    this.messageBackground = "";
 
     /**
      * Method call when user send a message
@@ -18,8 +19,8 @@ function App() {
     this.sendUserMessage = function(content) {
         let message = new Message(content, "user", new Date().getTime());
         this.messageList.push(message);
-        this.commands.parse(message.content);
         this.displayMessage(message);
+        this.commands.parse(message.content);
     };
 
     this.displayMessage = function (message){
@@ -31,6 +32,10 @@ function App() {
         // Add classes to div
         newDiv.classList.add(message.sender);
         newDiv.classList.add("message");
+        // Set message background color
+        if(this.messageBackground !== ""){
+            newDiv.style.background = this.messageBackground;
+        }
         // Add new element to DOM
         const parentDiv = document.getElementById('void');
         document.getElementById("chat").insertBefore(newDiv, parentDiv);
@@ -75,6 +80,7 @@ console.log(message.getSendingTimeString())
 console.log(app.commands.parse("/background"))
  */
 
+// Functions
 window.useMe = function useMe() {
     switch (document.getElementById("help").style.display) {
         case "none":
@@ -96,6 +102,45 @@ window.useMe = function useMe() {
 
 window.sendMessage = function (){
     let element = document.getElementById("send");
-    app.sendUserMessage(element.value);
-    element.value = "";
+    if(element.value !== ""){
+        app.sendUserMessage(element.value);
+        element.value = "";
+    }
 }
+
+// Events
+document.getElementById("send").addEventListener("keydown", function(event) {
+    switch (event.key){
+        case "Enter":
+            sendMessage()
+            break;
+        case "ArrowUp":
+            break;
+    }
+})
+
+window.helpClicked = function (event){
+    for(const [key, value] of Object.entries(app.commands.commandsList)){
+        if(value !== "" && event.target.textContent === (value["description"])){
+            document.getElementById("send").value = key;
+        }
+    }
+}
+
+// Display command help:
+for(const [key, value] of Object.entries(app.commands.commandsList)){
+    // Create new div element
+    const newDiv = document.createElement("a");
+    newDiv.href = "#";
+    newDiv.onclick = helpClicked;
+    // Give it text content
+    const newContent = document.createTextNode(value["description"]);
+    newDiv.appendChild(newContent);
+    // Add classes to div
+    newDiv.classList.add("help");
+    // Add new element to DOM
+    const parentDiv = document.getElementById('help_parent');
+    document.getElementById("help").insertBefore(newDiv, parentDiv);
+}
+
+useMe()

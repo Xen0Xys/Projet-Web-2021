@@ -1,6 +1,7 @@
 body,html {
 	height: 99%;
 }
+
 body {
 	column-gap: 10px;
 	background-color: rgb(43, 45, 46);
@@ -12,6 +13,7 @@ input {
 }
 
 #help,#chatbox {
+	display: flex;
 	margin-top: 4%;
 	margin-bottom: 4%;
 	flex: 1;
@@ -21,31 +23,36 @@ input {
 #help {
 	margin-left: 5%;
 	max-width: 30%;
+	flex-direction: column;
 }
 
 #chatbox {
-	margin-left: 5%;
 	margin-right: 5%;
 	flex-flow: column;
 }
 
 #chat {
-	flex: auto;
 	display: flex;
-	flex-flow: column;
-	order: 1;
+	position: relative;
+	margin-top: auto;
+	margin-bottom: 0;
+	flex-flow: column wrap;
 }
 
 #input {
 	display: flex;
-	order: 2;
+	margin-top: auto;
+	margin-bottom: 0;
 }
-.msg {
+
+.message {
 	order: 1;
+
 }
+
 .user, .bot {
-	display: flex;
 }
+
 .user {
 	align-self: flex-end;
 	background-color: rgb(51, 51, 204);
