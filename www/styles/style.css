@@ -8,20 +8,16 @@ body {
 	display: flex;
 }
 
-div {
-	margin: 0;
-}
-
 input {
 	flex: 1;
 }
 
 #help,#chatbox {
+	display: flex;
 	margin-top: 4%;
 	margin-bottom: 4%;
 	flex: 1;
 	background-color: rgb(119, 136, 153);
-	display: flex;
 }
 
 #help {
@@ -30,34 +26,30 @@ input {
 }
 
 #chatbox {
-	margin-left: 5%;
 	margin-right: 5%;
 	flex-flow: column;
-	flex-direction: column;
 }
 
 #chat {
-	flex: auto;
 	display: flex;
-	flex-flow: column;
-	flex-direction: column;
-	order: 1;
-	transform: rotateY(-180deg) rotateZ(180deg) rotateX(-180deg);
+	position: relative;
+	margin-top: auto;
+	margin-bottom: 0;
+	flex-flow: column wrap;
 }
 
 #input {
 	display: flex;
-	order: 2;
 	margin-top: auto;
+	margin-bottom: 0;
 }
 
 .message {
 	order: 1;
-	transform: rotateY(180deg) rotateZ(180deg) rotateX(180deg);
+
 }
 
 .user, .bot {
-	display: flex;
 }
 
 .user {
