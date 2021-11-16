@@ -7,6 +7,13 @@
 	<link rel="stylesheet" href="styles/style.css"/>
 	<script type="module" src="scripts/app.js"></script>
 	<link rel="icon" href="image/chatbot-icon.svg"/>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+
+
 	<title>Chatbot</title>
 </head>
 <body>
@@ -19,9 +26,13 @@
 			<div id="void"></div>
 		</div>
 		<div id="input">
-			<button onclick="useMe()">Aide</button>
+			<button id="help_button" onclick="useMe()">
+
+			</button>
 			<input id="send" type="text"/>
-			<button onclick="sendMessage()">Envoie</button>
+			<button id="send_button" onclick="sendMessage()">
+
+			</button>
 		</div>
 	</div>
 </body>

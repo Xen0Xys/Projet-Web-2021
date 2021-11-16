@@ -3,8 +3,9 @@ body,html {
 }
 
 body {
+	font-family: 'Roboto', sans-serif;
 	column-gap: 10px;
-	background-color: rgb(43, 45, 46);
+	background-color: #262626;
 	display: flex;
 }
 
@@ -17,26 +18,30 @@ input {
 	margin-top: 4%;
 	margin-bottom: 4%;
 	flex: 1;
-	background-color: rgb(119, 136, 153);
+	background-color: #404040;
 }
 
 #help {
 	margin-left: 5%;
 	max-width: 30%;
 	flex-direction: column;
+	border-radius: 20px;
 }
 
 #chatbox {
 	margin-right: 5%;
 	flex-flow: column;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
 }
 
 #chat {
 	display: flex;
 	position: relative;
-	margin-top: auto;
-	margin-bottom: 0;
-	flex-flow: column wrap;
+	flex-flow: column;
+	align-items: flex-start;
+	overflow: auto;
+	padding-top: 20px;
 }
 
 #input {
@@ -47,7 +52,11 @@ input {
 
 .message {
 	order: 1;
-
+	padding: 5px;
+	border-radius: 10px;
+	margin: -7px 7px 7px;
+	max-width: 300px;
+	word-wrap: break-word;
 }
 
 .user, .bot {
@@ -55,10 +64,45 @@ input {
 
 .user {
 	align-self: flex-end;
-	background-color: rgb(51, 51, 204);
+	text-align: right;
+	background-color: #0056F5;
 }
 
 .bot {
 	align-self: flex-start;
-	background-color: rgb(204, 204, 204);
+	text-align: left;
+	background-color: #707070;
+}
+
+button{
+	/*background-color: #0056F5;*/
+}
+
+input{
+	background-color: #707070;
+	width: 100%;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+button, input{
+	padding-top: 10px;
+}
+
+#help_button{
+	background: url(../image/question-circle-regular.svg) no-repeat center;
+	width: 40px;
+	color: black;
+	border: 2px solid #707070;
+	border-radius: 5px;
+}
+
+#send_button{
+	background: url(../image/paper-plane-regular.svg) no-repeat center;
+	width: 40px;
+	color: black;
+	border: 2px solid #707070;
+	border-radius: 5px;
 }

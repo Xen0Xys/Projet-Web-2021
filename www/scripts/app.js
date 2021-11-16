@@ -20,15 +20,31 @@ function App() {
         let message = new Message(content, "user", new Date().getTime());
         this.messageList.push(message);
         this.displayMessage(message);
-        this.commands.parse(message.content);
+        switch (this.commands.parse(message.content)){
+            case 0:
+                break;
+            case 1:
+                this.sendBotMessage("Commande inconnue!")
+                break;
+            case 2:
+                this.sendBotMessage("Pas assez d'arguments pour executer cette commande!")
+                break;
+            case 3:
+                this.sendBotMessage("Bonjour!")
+                break;
+        }
     };
 
     this.displayMessage = function (message){
         // Create new div element
         const newDiv = document.createElement("div");
+        const lineJump = document.createElement("br");
         // Give it text content
-        const newContent = document.createTextNode(message.content);
+        const newContent = document.createTextNode(message.getSendingTimeString() + ":");
+        const newContent2 = document.createTextNode(message.content);
         newDiv.appendChild(newContent);
+        newDiv.appendChild(lineJump);
+        newDiv.appendChild(newContent2);
         // Add classes to div
         newDiv.classList.add(message.sender);
         newDiv.classList.add("message");
@@ -105,6 +121,8 @@ window.sendMessage = function (){
     if(element.value !== ""){
         app.sendUserMessage(element.value);
         element.value = "";
+        let div = document.getElementById("chat");
+        div.scrollTop = div.scrollHeight;
     }
 }
 
@@ -123,6 +141,7 @@ window.helpClicked = function (event){
     for(const [key, value] of Object.entries(app.commands.commandsList)){
         if(value !== "" && event.target.textContent === (value["description"])){
             document.getElementById("send").value = key;
+            document.getElementById("send").focus()
         }
     }
 }
