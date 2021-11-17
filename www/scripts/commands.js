@@ -154,6 +154,7 @@ function Commands(_app) {
     this.clearCommand = function (){
         app.messageList = [];
         document.querySelectorAll('.message').forEach(e => e.remove());
+        app.sendBotMessage("Bonjour, comment puis-je vous aider?")
     };
     /**
      * Reset all changes
@@ -174,15 +175,15 @@ function Commands(_app) {
 
     // Command list
     this.commandsList = {
-        "/debug": {"argsCount": 0, "executor": this.debugCommand, "description": "/debug [message]: Debug command"},
-        "/help": {"argsCount": 0, "executor": this.helpCommand, "description": "/help: Send help message"},
-        "/loremIpsum": {"argsCount": 0, "executor": this.loremIpsumCommand, "description": "/loremIpsum: Send lorem ipsum"},
-        "/background": {"argsCount": 1, "executor": this.backgroundCommand, "description": "/background <color>: Change background color"},
-        "/messageColor": {"argsCount": 1, "executor": this.messageColorCommand, "description": "/messageColor <color>: Change message color"},
-        "/messageSize": {"argsCount": 1, "executor": this.messageSizeCommand, "description": "/messageSize <size>: Change message size"},
-        "/messageBackground": {"argsCount": 1, "executor": this.messageBackgroundCommand, "description": "/messageBackground <color>: Change message background color"},
-        "/clear": {"argsCount": 0, "executor": this.clearCommand, "description": "/clear: Clear messages"},
-        "/reset": {"argsCount": 0, "executor": this.resetCommand, "description": "/reset: Reset page formatting"}
+        "/debug": {"argsCount": 0, "optionalArgs": true, "executor": this.debugCommand, "description": "/debug [message]: Debug command"},
+        "/help": {"argsCount": 0, "optionalArgs": false, "executor": this.helpCommand, "description": "/help: Send help message"},
+        "/loremIpsum": {"argsCount": 0, "optionalArgs": false, "executor": this.loremIpsumCommand, "description": "/loremIpsum: Send lorem ipsum"},
+        "/background": {"argsCount": 1, "optionalArgs": false, "executor": this.backgroundCommand, "description": "/background <color>: Change background color"},
+        "/messageColor": {"argsCount": 1, "optionalArgs": false, "executor": this.messageColorCommand, "description": "/messageColor <color>: Change message color"},
+        "/messageSize": {"argsCount": 1, "optionalArgs": false, "executor": this.messageSizeCommand, "description": "/messageSize <size>: Change message size"},
+        "/messageBackground": {"argsCount": 1, "optionalArgs": false, "executor": this.messageBackgroundCommand, "description": "/messageBackground <color>: Change message background color"},
+        "/clear": {"argsCount": 0, "optionalArgs": false, "executor": this.clearCommand, "description": "/clear: Clear messages"},
+        "/reset": {"argsCount": 0, "optionalArgs": false, "executor": this.resetCommand, "description": "/reset: Reset page formatting"}
     };
 }
 
