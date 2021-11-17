@@ -35,6 +35,20 @@ function App() {
         }
     };
 
+    /**
+     * Method call when bot send a message
+     * @param content Message sent by bot
+     */
+    this.sendBotMessage = function(content) {
+        let message = new Message(content, "bot", new Date().getTime());
+        this.messageList.push(message);
+        this.displayMessage(message);
+    };
+
+    /**
+     * Display message
+     * @param message Message object
+     */
     this.displayMessage = function (message){
         // Create new div element
         const masterMessageDiv = document.createElement("div");
@@ -67,16 +81,6 @@ function App() {
     }
 
     /**
-     * Method call when bot send a message
-     * @param content Message sent by bot
-     */
-    this.sendBotMessage = function(content) {
-        let message = new Message(content, "bot", new Date().getTime());
-        this.messageList.push(message);
-        this.displayMessage(message);
-    };
-
-    /**
      * Get message list with filter apply
      * @param filter Filter String, can be "" for getting all messages
      * @returns {*[]} List of messages filtered
@@ -106,6 +110,9 @@ console.log(app.commands.parse("/background"))
  */
 
 // Functions
+/**
+ * Public function for hide and show help tab
+ */
 window.useMe = function useMe() {
     switch (document.getElementById("help").style.display) {
         case "none":
@@ -127,6 +134,9 @@ window.useMe = function useMe() {
 
 let sentList = [];
 let currentSelected = -1;
+/**
+ * Public function when a message is send
+ */
 window.sendMessage = function (){
     let element = document.getElementById("send");
     if(element.value !== ""){
@@ -139,6 +149,9 @@ window.sendMessage = function (){
 }
 
 // Events
+/**
+ * Keyboard listener for input
+ */
 document.getElementById("send").addEventListener("keydown", function(event) {
     switch (event.key){
         case "Enter":
@@ -163,6 +176,10 @@ document.getElementById("send").addEventListener("keydown", function(event) {
     }
 })
 
+/**
+ * Public function when help element is clicked
+ * @param event Click event
+ */
 window.helpClicked = function (event){
     for(const [key, value] of Object.entries(app.commands.commandsList)){
         if(value !== "" && event.target.textContent === (value["description"])){
@@ -173,7 +190,7 @@ window.helpClicked = function (event){
 }
 
 // Display command help:
-for(const [key, value] of Object.entries(app.commands.commandsList)){
+for(const [, value] of Object.entries(app.commands.commandsList)){
     // Create new div element
     const newDiv = document.createElement("a");
     newDiv.href = "#";

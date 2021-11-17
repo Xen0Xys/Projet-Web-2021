@@ -71,14 +71,21 @@ function Commands(_app) {
     };
 
     // Commands executors
+    /**
+     * Debug command
+     * @param args Message to send
+     */
     this.debugCommand = function (args){
         let message = "Message template!"
         if(args.length >= 1){
-            message = args[0]
+            message = args.join(" ")
         }
         app.sendBotMessage(message)
     }
-    this.loremIpsumCommand = function (args){
+    /**
+     * Send lorem ipsum
+     */
+    this.loremIpsumCommand = function (){
         app.sendBotMessage("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vulputate pharetra dolor ut aliquam. Etiam dignissim diam orci, venenatis cursus ipsum vehicula in. Donec quis venenatis orci. Praesent vitae semper leo. In augue tellus, consequat sit amet interdum vel, semper non augue. Duis maximus tortor arcu, nec porttitor tellus faucibus eget. Nullam a tortor lacinia, porta velit scelerisque, imperdiet erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque tincidunt urna at ornare placerat. Quisque aliquam facilisis urna vel tincidunt.\n" +
             "\n" +
             "Pellentesque pharetra lacinia fermentum. Donec eu lacinia nibh, sed venenatis lorem. Nullam dapibus velit non est convallis pellentesque. Integer consequat tortor sit amet odio auctor, faucibus molestie justo venenatis. Vestibulum quis lectus viverra, lobortis leo id, suscipit elit. Pellentesque sed blandit arcu. Nunc imperdiet ex eget pulvinar blandit. Pellentesque in orci in dui sollicitudin aliquet.\n" +
@@ -132,17 +139,15 @@ function Commands(_app) {
     };
     /**
      * Clear all messages
-     * @param args Arguments
      */
-    this.clearCommand = function (args){
+    this.clearCommand = function (){
         app.messageList = [];
         document.querySelectorAll('.message').forEach(e => e.remove());
     };
     /**
      * Reset all changes
-     * @param args Arguments
      */
-    this.resetCommand = function (args){
+    this.resetCommand = function (){
         document.getElementById("help").style.background = "";
         document.getElementById("chatbox").style.background = "";
         document.getElementById("chat").style.color = "";
