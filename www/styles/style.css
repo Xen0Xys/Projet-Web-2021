@@ -39,11 +39,12 @@ body {
 	border-radius: 15px 15px 5px 5px;
 }
 #chat {
+	flex-grow: 1;
 	display: flex;
 	margin-top: auto;
 	position: relative;
-	flex-flow: column;
-	align-items: flex-start;
+	flex-flow: column nowrap;
+	justify-content: flex-end;
 	overflow: auto;
 	padding-top: 20px;
 }
@@ -74,14 +75,10 @@ a:hover, a:active {
 #bar {
 	align-items: baseline;
 	flex-flow: row;
+	box-shadow: 0 5px 5px black;
 }
 
 /*Input bar part*/
-#input {
-	display: flex;
-	margin-top: auto;
-	margin-bottom: 0;
-}
 input{
 	flex: 1;
 	background-color: #707070;
@@ -94,6 +91,11 @@ button, input{
 	padding-top: 5px;
 	padding-bottom: 5px;
 	padding-left: 5px;
+}
+#input {
+	display: flex;
+	margin-top: auto;
+	margin-bottom: 0;
 }
 #help_button{
 	background: url(../image/question-circle-regular.svg) no-repeat center;
@@ -114,6 +116,7 @@ button, input{
 	align-items: end;
 	flex-basis: 0;
 }
+
 /*Message part*/
 .message {
 	order: 1;
@@ -140,7 +143,7 @@ button, input{
 .message_content{
 	margin-top: -8px;
 }
-
+/* waiting bugfix webkit in mozilla firefox */
 /* Scrollbar part */
 ::-webkit-scrollbar {
 	width: 10px;
@@ -156,7 +159,6 @@ button, input{
 ::-webkit-scrollbar-thumb:hover {
 	background: #555555;
 }
-
 
 /* Animation part (WIP) */
 .animated{

@@ -22,17 +22,17 @@ window.useMe = function useMe() {
     switch (document.getElementById("help").style.display) {
         case "none":
             document.getElementById("body").style.columnCount = "2";
-            document.getElementById("help").style.display = "";
+            document.getElementById("help").style.display = "flex";
             document.getElementById("chatbox").style.marginLeft = "0%";
             break;
-        case "":
+        case "flex":
             document.getElementById("body").style.clear;
             document.getElementById("help").style.display = "none";
             document.getElementById("chatbox").style.marginLeft = "1%";
             break;
         default:
             document.getElementById("body").style.columnCount = "2";
-            document.getElementById("help").style.display = "";
+            document.getElementById("help").style.display = "flex";
             document.getElementById("chatbox").style.marginLeft = "0%";
     }
 }
@@ -128,5 +128,4 @@ for(const [, value] of Object.entries(app.commands.commandsList)){
     document.getElementById("help").insertBefore(newDiv, parentDiv);
 }
 
-useMe()
 app.sendBotMessage("Bonjour, comment puis-je vous aider?")

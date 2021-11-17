@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-	<meta charset="UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="A web project for our evaluation in 'Programmation Web 1 / Automne'"/>
-	<link rel="stylesheet" href="styles/style.css"/>
-	<script type="module" src="scripts/main.js"></script>
-	<link rel="icon" href="image/chatbot-icon.svg"/>
-
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
-
-
-	<title>Chatbot</title>
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="A web project for our evaluation in 'Programmation Web 1 / Automne'"/>
+		<link rel="stylesheet" href="styles/style.css"/>
+		<script type="module" src="scripts/main.js"></script>
+		<link rel="icon" href="image/chatbot-icon.svg"/>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+		<title>Chatbot</title>
+	</head>
+	<body>
 		<main id="body" style="column-count: 2" >
-			<div id="help" style="display: none">
+			<div id="help" style="display: flex;">
 				<div id="help_parent"></div>
 			</div>
-			<div id="chatbox" style="margin-left: 5%">
+			<div id="chatbox" style="margin-left: 0%">
 				<div id="bar">
 					<h1 id="titre">CSS Chatbot</h1>
 					<input style="display: none" id="insearch" type="text"/>
 					<button id="button_search" onclick="showBar()">affiche</button>
 				</div>
-				<p style="flex-grow: 1"></p>
 				<div id="chat">
 					<div id="void"></div>
 				</div>
