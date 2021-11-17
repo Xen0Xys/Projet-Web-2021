@@ -40,7 +40,7 @@ body {
 	display: flex;
 	margin-top: auto;
 	position: relative;
-	flex-flow: column wrap;
+	flex-flow: column;
 	align-items: flex-start;
 	overflow: auto;
 	padding-top: 20px;
