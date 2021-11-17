@@ -21,17 +21,17 @@ console.log(app.commands.parse("/background"))
 window.useMe = function useMe() {
     switch (document.getElementById("help").style.display) {
         case "none":
-            document.body.style.columnCount = "2";
+            document.getElementById("body").style.columnCount = "2";
             document.getElementById("help").style.display = "";
             document.getElementById("chatbox").style.marginLeft = "0%";
             break;
         case "":
-            document.body.style.clear;
+            document.getElementById("body").style.clear;
             document.getElementById("help").style.display = "none";
             document.getElementById("chatbox").style.marginLeft = "5%";
             break;
         default:
-            document.body.style.columnCount = "2";
+            document.getElementById("body").style.columnCount = "2";
             document.getElementById("help").style.display = "";
             document.getElementById("chatbox").style.marginLeft = "0%";
     }

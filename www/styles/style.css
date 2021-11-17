@@ -5,13 +5,16 @@
 
 /*Global part*/
 body, html {
-	height: 99%;
+	height: 95%;
 }
 body {
 	font-family: 'Roboto', sans-serif;
-	column-gap: 10px;
 	background-color: #262626;
+}
+#body {
+	height: 100%;
 	display: flex;
+	column-gap: 10px;
 }
 #help, #chatbox {
 	display: flex;
@@ -21,12 +24,14 @@ body {
 	background-color: #404040;
 }
 #help {
+	order: 0;
 	margin-left: 1%;
 	max-width: 30%;
 	flex-direction: column;
 	border-radius: 15px;
 }
 #chatbox {
+	order: 1;
 	margin-right: 1%;
 	flex-flow: column;
 	border-radius: 15px 15px 5px 5px;
