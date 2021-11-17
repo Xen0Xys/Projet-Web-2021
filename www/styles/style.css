@@ -1,3 +1,8 @@
+
+#titre {
+	color: white;
+}
+=======
 /*Global part*/
 body, html {
 	height: 99%;
@@ -28,6 +33,7 @@ body {
 }
 #chat {
 	display: flex;
+	margin-top: auto;
 	position: relative;
 	flex-flow: column;
 	align-items: flex-start;
@@ -39,6 +45,24 @@ p{
 	margin-bottom: 0;
 }
 
+a:link, a:visited {
+	color: white;
+	background-color: #1ebba3;
+	display: inline-block;
+	padding: 10px 20px;
+	border: 2px solid #099983;
+	text-decoration: none;
+	text-align: center;
+}
+a:hover, a:active {
+	background-color: #9c6ae1;
+	border-color: #7443b6;
+}
+#input, #search {
+	margin-top: auto;
+	margin-bottom: 0;
+	display: flex;
+}
 /*Input bar part*/
 #input {
 	display: flex;

@@ -101,5 +101,3 @@ function App() {
     };
     console.log("App loaded!")
 }
-
-export {App}
