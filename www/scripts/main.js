@@ -28,7 +28,7 @@ window.useMe = function useMe() {
         case "":
             document.getElementById("body").style.clear;
             document.getElementById("help").style.display = "none";
-            document.getElementById("chatbox").style.marginLeft = "5%";
+            document.getElementById("chatbox").style.marginLeft = "1%";
             break;
         default:
             document.getElementById("body").style.columnCount = "2";
@@ -90,6 +90,11 @@ window.helpClicked = function (event){
         if(value !== "" && event.target.textContent === (value["description"])){
             document.getElementById("send").value = key;
             document.getElementById("send").focus()
+            if(value["argsCount"] === 0){
+                if(value["optionalArgs"] === false){
+                    sendMessage()
+                }
+            }
         }
     }
 }
