@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-	<meta charset="UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="A web project for our evaluation in 'Programmation Web 1 / Automne'"/>
-	<link rel="stylesheet" href="styles/style.css"/>
-	<script type="module" src="scripts/app.js"></script>
-	<link rel="icon" href="image/chatbot-icon.svg"/>
-	<title>Chatbot</title>
-</head>
-<body>
-	<div id="help" style="display: none">
-		<div id="help_parent"></div>
-	</div>
-	<div id="chatbox" style="margin-left: 5%;position: relative">
-		<p style="flex-grow: 1"></p>
-		<div id="chat">
-			<div id="void"></div>
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="A web project for our evaluation in 'Programmation Web 1 / Automne'"/>
+		<link rel="stylesheet" href="styles/style.css"/>
+		<script type="module" src="scripts/app.js"></script>
+		<link rel="icon" href="image/chatbot-icon.svg"/>
+		<title>Chatbot</title>
+	</head>
+	<body>
+		<center>
+			<h1 id="titre">CSS Chatbot</h1>
+		</center>
+		<div id="body" style="column-count: 2" >
+			<div id="help" style="display: hidden">
+				<div id="help_parent"></div>
+			</div>
+			<div id="chatbox" style="margin-left: 5%">
+				<div id="search">
+					<input id="insearch" type="text"/>
+					<button onclick="">Envoie</button>
+				</div>
+				<p style="flex-grow: 1"></p>
+				<div id="chat">
+					<div id="void"></div>
+				</div>
+				<div id="input">
+					<button onclick="useMe()">Aide</button>
+					<input id="send" type="text"/>
+					<button onclick="sendMessage()">Envoie</button>
+				</div>
+			</div>
 		</div>
-		<div id="input">
-			<button onclick="useMe()">Aide</button>
-			<input id="send" type="text"/>
-			<button onclick="sendMessage()">Envoie</button>
-		</div>
-	</div>
-</body>
+	</body>
 </html>

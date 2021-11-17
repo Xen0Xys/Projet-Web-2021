@@ -1,20 +1,28 @@
 body,html {
-	height: 99%;
-}
-
-body {
-	column-gap: 10px;
 	background-color: rgb(43, 45, 46);
-	display: flex;
+	height: 95%;
+	padding: 0;
+	margin:0;
 }
 
 input {
 	flex: 1;
 }
 
+#titre {
+	color: white;
+}
+
+#body {
+	height: 100%;
+	column-gap: 10px;
+	display: flex;
+	padding: 0;
+	margin:0;
+}
+
 #help,#chatbox {
 	display: flex;
-	margin-top: 4%;
 	margin-bottom: 4%;
 	flex: 1;
 	background-color: rgb(119, 136, 153);
@@ -33,24 +41,16 @@ input {
 
 #chat {
 	display: flex;
-	position: relative;
 	margin-top: auto;
 	margin-bottom: 0;
 	flex-flow: column wrap;
 }
 
-#input {
-	display: flex;
+
+#input, #search {
 	margin-top: auto;
 	margin-bottom: 0;
-}
-
-.message {
-	order: 1;
-
-}
-
-.user, .bot {
+	display: flex;
 }
 
 .user {
@@ -61,4 +61,18 @@ input {
 .bot {
 	align-self: flex-start;
 	background-color: rgb(204, 204, 204);
+}
+
+a:link, a:visited {
+	color: white;
+	background-color: #1ebba3;
+	display: inline-block;
+	padding: 10px 20px;
+	border: 2px solid #099983;
+	text-decoration: none;
+	text-align: center;
+}
+a:hover, a:active {
+	background-color: #9c6ae1;
+	border-color: #7443b6;
 }
