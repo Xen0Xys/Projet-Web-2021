@@ -83,6 +83,17 @@ function Commands(_app) {
         app.sendBotMessage(message)
     }
     /**
+     * Basic help command
+     */
+    this.helpCommand = function (){
+        app.sendBotMessage("Besoin d'aide? Je suis la:\n" +
+            " - Sur la gauche, vous trouverez les différentes commandes, vous pouvez cliquer dessus pour les coller dans la zone de saisie\n" +
+            " - Si vous ne voyez pas ce panneau, vous pouvez cliquer sur le point d'interrogation en bas à gauche pour l'afficher\n" +
+            " - La touche entrer permet d'envoyer une commande, et les flèches haut et bas permettent de naviguer dans les commandes déjà entrées\n" +
+            "\n" +
+            "Bon courage!")
+    }
+    /**
      * Send lorem ipsum
      */
     this.loremIpsumCommand = function (){
@@ -164,6 +175,7 @@ function Commands(_app) {
     // Command list
     this.commandsList = {
         "/debug": {"argsCount": 0, "executor": this.debugCommand, "description": "/debug [message]: Debug command"},
+        "/help": {"argsCount": 0, "executor": this.helpCommand, "description": "/help: Send help message"},
         "/loremIpsum": {"argsCount": 0, "executor": this.loremIpsumCommand, "description": "/loremIpsum: Send lorem ipsum"},
         "/background": {"argsCount": 1, "executor": this.backgroundCommand, "description": "/background <color>: Change background color"},
         "/messageColor": {"argsCount": 1, "executor": this.messageColorCommand, "description": "/messageColor <color>: Change message color"},

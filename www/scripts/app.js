@@ -57,11 +57,16 @@ function App() {
         const lineJump = document.createElement("br");
         // Give it text content
         const hour = document.createTextNode(message.getSendingTimeString() + ":");
-        const messageContent = document.createTextNode(message.content);
 
         hourText.appendChild(hour)
         hourText.classList.add("message_hour")
-        messageText.appendChild(messageContent)
+
+        let messages = message.content.split("\n");
+        for(let i = 0; i < messages.length; i++){
+            const p = document.createElement("p");
+            p.appendChild(document.createTextNode(messages[i]))
+            messageText.appendChild(p)
+        }
         messageText.classList.add("message_content")
 
         masterMessageDiv.appendChild(hourText);

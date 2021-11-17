@@ -44,7 +44,7 @@ let currentSelected = -1;
  */
 window.sendMessage = function (){
     let element = document.getElementById("send");
-    if(element.value !== ""){
+    if(element.value.split(" ").join("") !== ""){
         sentList.unshift(element.value);
         app.sendUserMessage(element.value);
         element.value = "";
