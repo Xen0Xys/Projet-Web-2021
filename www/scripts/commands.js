@@ -149,6 +149,7 @@ function Commands(_app) {
         document.getElementById("chat").style.fontSize = "";
 
         let elements = document.getElementsByClassName("message");
+        app.messageBackground = ""
         for(let i = 0; i < elements.length; i++){
             elements[i].style.background = "";
         }
