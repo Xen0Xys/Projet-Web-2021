@@ -1,6 +1,8 @@
 
 #titre {
 	color: white;
+	flex-grow: 1;
+	text-align: center;
 }
 
 /*Global part*/
@@ -63,12 +65,16 @@ a:hover, a:active {
 	background-color: #9c6ae1;
 	border-color: #7443b6;
 }
-#input, #search {
+#input, #bar {
 	margin-top: auto;
 	margin-bottom: 0;
 	display: flex;
 }
 
+#bar {
+	align-items: baseline;
+	flex-flow: row;
+}
 
 /*Input bar part*/
 #input {
@@ -104,6 +110,10 @@ button, input{
 	border-radius: 5px 5px 5px 0;
 }
 
+#button_search {
+	align-items: end;
+	flex-basis: 0;
+}
 /*Message part*/
 .message {
 	order: 1;

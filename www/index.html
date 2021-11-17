@@ -17,15 +17,15 @@
 	<title>Chatbot</title>
 </head>
 <body>
-		<div id="body" style="column-count: 2" >
+		<main id="body" style="column-count: 2" >
 			<div id="help" style="display: none">
 				<div id="help_parent"></div>
 			</div>
 			<div id="chatbox" style="margin-left: 5%">
-				<div id="search">
+				<div id="bar">
 					<h1 id="titre">CSS Chatbot</h1>
-					<input id="insearch" type="text"/>
-					<button onclick="">Envoie</button>
+					<input style="display: none" id="insearch" type="text"/>
+					<button id="button_search" onclick="showBar()">affiche</button>
 				</div>
 				<p style="flex-grow: 1"></p>
 				<div id="chat">
@@ -37,6 +37,6 @@
 					<button id="send_button" onclick="sendMessage()"></button>
 				</div>
 			</div>
-		</div>
+		</main>
 	</body>
 </html>
