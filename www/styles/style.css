@@ -35,7 +35,7 @@ body {
 	display: flex;
 	margin-top: auto;
 	position: relative;
-	flex-flow: column;
+	flex-flow: column wrap;
 	align-items: flex-start;
 	overflow: auto;
 	padding-top: 20px;
@@ -63,13 +63,14 @@ a:hover, a:active {
 	margin-bottom: 0;
 	display: flex;
 }
+
+
 /*Input bar part*/
 #input {
 	display: flex;
 	margin-top: auto;
 	margin-bottom: 0;
 }
-
 input{
 	flex: 1;
 	background-color: #707070;
