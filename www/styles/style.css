@@ -1,4 +1,4 @@
-body,html {
+body, html {
 	height: 99%;
 }
 
@@ -9,30 +9,25 @@ body {
 	display: flex;
 }
 
-input {
-	flex: 1;
-}
-
-#help,#chatbox {
+#help, #chatbox {
 	display: flex;
-	margin-top: 4%;
-	margin-bottom: 4%;
+	margin-top: 1%;
+	margin-bottom: 1%;
 	flex: 1;
 	background-color: #404040;
 }
 
 #help {
-	margin-left: 5%;
+	margin-left: 1%;
 	max-width: 30%;
 	flex-direction: column;
-	border-radius: 20px;
+	border-radius: 15px;
 }
 
 #chatbox {
-	margin-right: 5%;
+	margin-right: 1%;
 	flex-flow: column;
-	border-top-left-radius: 20px;
-	border-top-right-radius: 20px;
+	border-radius: 15px 15px 5px 5px;
 }
 
 #chat {
@@ -59,9 +54,6 @@ input {
 	word-wrap: break-word;
 }
 
-.user, .bot {
-}
-
 .user {
 	align-self: flex-end;
 	text-align: right;
@@ -74,35 +66,63 @@ input {
 	background-color: #707070;
 }
 
-button{
-	/*background-color: #0056F5;*/
-}
-
 input{
+	flex: 1;
 	background-color: #707070;
-	width: 100%;
-	display: inline-block;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
+	border: 2px solid #333333;
+	outline: none;
+	border-radius: 4px 4px 0 0;
 }
 
 button, input{
-	padding-top: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
 }
 
 #help_button{
 	background: url(../image/question-circle-regular.svg) no-repeat center;
 	width: 40px;
 	color: black;
-	border: 2px solid #707070;
-	border-radius: 5px;
+	border: 2px solid #333333;
+	border-radius: 5px 5px 0 5px;
 }
 
 #send_button{
 	background: url(../image/paper-plane-regular.svg) no-repeat center;
 	width: 40px;
 	color: black;
-	border: 2px solid #707070;
+	border: 2px solid #333333;
+	border-radius: 5px 5px 5px 0;
+}
+
+.message_hour{
+	margin-bottom: -8px;
+	font-size: 92%;
+}
+.message_content{
+	margin-top: -8px;
+}
+
+
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #404040;
 	border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #707070;
+	border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555555;
 }

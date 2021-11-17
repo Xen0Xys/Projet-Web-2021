@@ -37,24 +37,32 @@ function App() {
 
     this.displayMessage = function (message){
         // Create new div element
-        const newDiv = document.createElement("div");
+        const masterMessageDiv = document.createElement("div");
+        const hourText = document.createElement("div");
+        const messageText = document.createElement("div");
         const lineJump = document.createElement("br");
         // Give it text content
-        const newContent = document.createTextNode(message.getSendingTimeString() + ":");
-        const newContent2 = document.createTextNode(message.content);
-        newDiv.appendChild(newContent);
-        newDiv.appendChild(lineJump);
-        newDiv.appendChild(newContent2);
+        const hour = document.createTextNode(message.getSendingTimeString() + ":");
+        const messageContent = document.createTextNode(message.content);
+
+        hourText.appendChild(hour)
+        hourText.classList.add("message_hour")
+        messageText.appendChild(messageContent)
+        messageText.classList.add("message_content")
+
+        masterMessageDiv.appendChild(hourText);
+        masterMessageDiv.appendChild(lineJump);
+        masterMessageDiv.appendChild(messageText);
         // Add classes to div
-        newDiv.classList.add(message.sender);
-        newDiv.classList.add("message");
+        masterMessageDiv.classList.add(message.sender);
+        masterMessageDiv.classList.add("message");
         // Set message background color
         if(this.messageBackground !== ""){
-            newDiv.style.background = this.messageBackground;
+            masterMessageDiv.style.background = this.messageBackground;
         }
         // Add new element to DOM
         const parentDiv = document.getElementById('void');
-        document.getElementById("chat").insertBefore(newDiv, parentDiv);
+        document.getElementById("chat").insertBefore(masterMessageDiv, parentDiv);
     }
 
     /**
@@ -116,9 +124,12 @@ window.useMe = function useMe() {
     }
 }
 
+let sentList = [];
+let currentSelected = -1;
 window.sendMessage = function (){
     let element = document.getElementById("send");
     if(element.value !== ""){
+        sentList.unshift(element.value);
         app.sendUserMessage(element.value);
         element.value = "";
         let div = document.getElementById("chat");
@@ -130,9 +141,23 @@ window.sendMessage = function (){
 document.getElementById("send").addEventListener("keydown", function(event) {
     switch (event.key){
         case "Enter":
+            currentSelected = -1
             sendMessage()
             break;
         case "ArrowUp":
+            if(currentSelected + 1 < sentList.length){
+                currentSelected++
+                document.getElementById("send").value = sentList[currentSelected];
+            }
+            break;
+        case "ArrowDown":
+            if(currentSelected - 1 >= 0){
+                currentSelected--
+                document.getElementById("send").value = sentList[currentSelected];
+            }else{
+                currentSelected = -1
+                document.getElementById("send").value = ""
+            }
             break;
     }
 })
