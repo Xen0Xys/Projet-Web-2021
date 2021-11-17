@@ -35,24 +35,24 @@ body {
 #chatbox {
 	order: 1;
 	margin-right: 1%;
-	flex-flow: column;
+	flex-direction: column;
 	border-radius: 15px 15px 5px 5px;
 }
 #chat {
 	flex-grow: 1;
+	height: 100%;
 	display: flex;
-	margin-top: auto;
-	position: relative;
-	flex-flow: column nowrap;
-	justify-content: flex-end;
+	flex-direction: column;
 	overflow: auto;
 	padding-top: 20px;
+}
+#chat > :first-child {
+	margin-top: auto !important;
 }
 p{
 	margin-top: 0;
 	margin-bottom: 0;
 }
-
 a:link, a:visited {
 	color: black;
 	background-color: #707070;
