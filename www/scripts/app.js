@@ -20,26 +20,20 @@ function App() {
         let message = new Message(content, "user", new Date().getTime());
         this.messageList.push(message);
         this.displayMessage(message);
-        this.commands.parse(message.content);
-    };
-
-    this.displayMessage = function (message){
-        // Create new div element
-        const newDiv = document.createElement("div");
-        // Give it text content
-        const newContent = document.createTextNode(message.content);
-        newDiv.appendChild(newContent);
-        // Add classes to div
-        newDiv.classList.add(message.sender);
-        newDiv.classList.add("message");
-        // Set message background color
-        if(this.messageBackground !== ""){
-            newDiv.style.background = this.messageBackground;
+        switch (this.commands.parse(message.content)){
+            case 0:
+                break;
+            case 1:
+                this.sendBotMessage("Commande inconnue!")
+                break;
+            case 2:
+                this.sendBotMessage("Pas assez d'arguments pour executer cette commande!")
+                break;
+            case 3:
+                this.sendBotMessage("Bonjour!")
+                break;
         }
-        // Add new element to DOM
-        const parentDiv = document.getElementById('void');
-        document.getElementById("chat").insertBefore(newDiv, parentDiv);
-    }
+    };
 
     /**
      * Method call when bot send a message
@@ -50,6 +44,46 @@ function App() {
         this.messageList.push(message);
         this.displayMessage(message);
     };
+
+    /**
+     * Display message
+     * @param message Message object
+     */
+    this.displayMessage = function (message){
+        // Create new div element
+        const masterMessageDiv = document.createElement("div");
+        const hourText = document.createElement("div");
+        const messageText = document.createElement("div");
+        const lineJump = document.createElement("br");
+        // Give it text content
+        const hour = document.createTextNode(message.getSendingTimeString() + ":");
+
+        hourText.appendChild(hour)
+        hourText.classList.add("message_hour")
+
+        let messages = message.content.split("\n");
+        for(let i = 0; i < messages.length; i++){
+            const p = document.createElement("p");
+            p.appendChild(document.createTextNode(messages[i]))
+            messageText.appendChild(p)
+        }
+        messageText.classList.add("message_content")
+
+        masterMessageDiv.appendChild(hourText);
+        masterMessageDiv.appendChild(lineJump);
+        masterMessageDiv.appendChild(messageText);
+        // Add classes to div
+        masterMessageDiv.classList.add(message.sender);
+        masterMessageDiv.classList.add("message");
+        masterMessageDiv.classList.add("animated");
+        // Set message background color
+        if(this.messageBackground !== ""){
+            masterMessageDiv.style.background = this.messageBackground;
+        }
+        // Add new element to DOM
+        const parentDiv = document.getElementById('void');
+        document.getElementById("chat").insertBefore(masterMessageDiv, parentDiv);
+    }
 
     /**
      * Get message list with filter apply
@@ -68,79 +102,4 @@ function App() {
     console.log("App loaded!")
 }
 
-const app = new App();
-/*
-// Debug
-app.sendUserMessage("Yolo")
-app.sendUserMessage("Test")
-app.sendUserMessage("oe")
-console.log(app.getMessageListWithFilter(""))
-let message = app.getMessageListWithFilter("")[0]
-console.log(message.getSendingTimeString())
-console.log(app.commands.parse("/background"))
- */
-
-// Functions
-window.useMe = function useMe() {
-    switch (document.getElementById("help").style.display) {
-        case "none":
-            document.body.style.columnCount = "2";
-            document.getElementById("help").style.display = "";
-            document.getElementById("chatbox").style.marginLeft = "0%";
-            break;
-        case "":
-            document.body.style.clear;
-            document.getElementById("help").style.display = "none";
-            document.getElementById("chatbox").style.marginLeft = "5%";
-            break;
-        default:
-            document.body.style.columnCount = "2";
-            document.getElementById("help").style.display = "";
-            document.getElementById("chatbox").style.marginLeft = "0%";
-    }
-}
-
-window.sendMessage = function (){
-    let element = document.getElementById("send");
-    if(element.value !== ""){
-        app.sendUserMessage(element.value);
-        element.value = "";
-    }
-}
-
-// Events
-document.getElementById("send").addEventListener("keydown", function(event) {
-    switch (event.key){
-        case "Enter":
-            sendMessage()
-            break;
-        case "ArrowUp":
-            break;
-    }
-})
-
-window.helpClicked = function (event){
-    for(const [key, value] of Object.entries(app.commands.commandsList)){
-        if(value !== "" && event.target.textContent === (value["description"])){
-            document.getElementById("send").value = key;
-        }
-    }
-}
-
-// Display command help:
-for(const [key, value] of Object.entries(app.commands.commandsList)){
-    // Create new div element
-    const newDiv = document.createElement("a");
-    newDiv.href = "#";
-    newDiv.onclick = helpClicked;
-    // Give it text content
-    const newContent = document.createTextNode(value["description"]);
-    newDiv.appendChild(newContent);
-    // Add classes to div
-    newDiv.classList.add("help");
-    // Add new element to DOM
-    const parentDiv = document.getElementById('help_parent');
-    document.getElementById("help").insertBefore(newDiv, parentDiv);
-}
-
-useMe()
+export {App}
