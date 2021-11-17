@@ -56,6 +56,7 @@ function App() {
         // Add classes to div
         masterMessageDiv.classList.add(message.sender);
         masterMessageDiv.classList.add("message");
+        masterMessageDiv.classList.add("animated");
         // Set message background color
         if(this.messageBackground !== ""){
             masterMessageDiv.style.background = this.messageBackground;

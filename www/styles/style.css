@@ -1,14 +1,13 @@
+/*Global part*/
 body, html {
 	height: 99%;
 }
-
 body {
 	font-family: 'Roboto', sans-serif;
 	column-gap: 10px;
 	background-color: #262626;
 	display: flex;
 }
-
 #help, #chatbox {
 	display: flex;
 	margin-top: 1%;
@@ -16,20 +15,17 @@ body {
 	flex: 1;
 	background-color: #404040;
 }
-
 #help {
 	margin-left: 1%;
 	max-width: 30%;
 	flex-direction: column;
 	border-radius: 15px;
 }
-
 #chatbox {
 	margin-right: 1%;
 	flex-flow: column;
 	border-radius: 15px 15px 5px 5px;
 }
-
 #chat {
 	display: flex;
 	position: relative;
@@ -39,31 +35,11 @@ body {
 	padding-top: 20px;
 }
 
+/*Input bar part*/
 #input {
 	display: flex;
 	margin-top: auto;
 	margin-bottom: 0;
-}
-
-.message {
-	order: 1;
-	padding: 5px;
-	border-radius: 10px;
-	margin: -7px 7px 7px;
-	max-width: 300px;
-	word-wrap: break-word;
-}
-
-.user {
-	align-self: flex-end;
-	text-align: right;
-	background-color: #0056F5;
-}
-
-.bot {
-	align-self: flex-start;
-	text-align: left;
-	background-color: #707070;
 }
 
 input{
@@ -73,13 +49,11 @@ input{
 	outline: none;
 	border-radius: 4px 4px 0 0;
 }
-
 button, input{
 	padding-top: 5px;
 	padding-bottom: 5px;
 	padding-left: 5px;
 }
-
 #help_button{
 	background: url(../image/question-circle-regular.svg) no-repeat center;
 	width: 40px;
@@ -87,7 +61,6 @@ button, input{
 	border: 2px solid #333333;
 	border-radius: 5px 5px 0 5px;
 }
-
 #send_button{
 	background: url(../image/paper-plane-regular.svg) no-repeat center;
 	width: 40px;
@@ -96,6 +69,25 @@ button, input{
 	border-radius: 5px 5px 5px 0;
 }
 
+/*Message part*/
+.message {
+	order: 1;
+	padding: 5px;
+	border-radius: 10px;
+	margin: -7px 7px 7px;
+	max-width: 300px;
+	word-wrap: break-word;
+}
+.user {
+	align-self: flex-end;
+	text-align: right;
+	background-color: #0056F5;
+}
+.bot {
+	align-self: flex-start;
+	text-align: left;
+	background-color: #707070;
+}
 .message_hour{
 	margin-bottom: -8px;
 	font-size: 92%;
@@ -104,25 +96,35 @@ button, input{
 	margin-top: -8px;
 }
 
-
-
+/* Scrollbar part */
 ::-webkit-scrollbar {
 	width: 10px;
 }
-
-/* Track */
 ::-webkit-scrollbar-track {
 	background: #404040;
 	border-radius: 5px;
 }
-
-/* Handle */
 ::-webkit-scrollbar-thumb {
 	background: #707070;
 	border-radius: 5px;
 }
-
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
 	background: #555555;
+}
+
+
+/* Animation part (WIP) */
+.animated{
+	animation-iteration-count: 1;
+	animation-duration: 0.3s;
+	animation-fill-mode: forwards;
+	animation-name: messageAnimation;
+}
+@keyframes messageAnimation {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale(1);
+	}
 }
