@@ -111,3 +111,4 @@ for(const [, value] of Object.entries(app.commands.commandsList)){
 }
 
 useMe()
+app.sendBotMessage("Bonjour, comment puis-je vous aider?")
