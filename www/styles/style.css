@@ -49,10 +49,6 @@ body {
 #chat > :first-child {
 	margin-top: auto !important;
 }
-p{
-	margin-top: 0;
-	margin-bottom: 0;
-}
 a:link, a:visited {
 	color: black;
 	background-color: #707070;
