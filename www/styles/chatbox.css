@@ -1,6 +1,20 @@
 @import "bar.css";
 @import "input.css";
 @import "message.css";
+/*Global part*/
+button, input{ padding: 5px 0px 5px 5px; }
+input{
+	flex: 1;
+	background-color: #707070;
+	border: 2px solid #333333;
+	border-radius: 4px 4px 0 0;
+	font-size: 100%;
+}
+button {
+	width: 40px;
+	flex: 0 auto;
+	color: black;
+}
 /*Chatbox part*/
 #chatbox, #chat { flex: 1 auto; }
 #chatbox {
@@ -14,7 +28,4 @@
 }
 #chat > :first-child { margin-top: auto !important; }
 /*Input bar part*/
-#input, #bar {
-	margin-top: auto;
-	margin-bottom: 0;
-}
+#input, #bar { margin: auto 0 0; }
