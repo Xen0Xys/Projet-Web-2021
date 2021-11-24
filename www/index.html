@@ -18,7 +18,7 @@
 </head>
 <body>
 		<div id="body" style="column-count: 2" >
-			<div id="help" class="help_animated" style="display: none">
+			<div id="help" class="help_appear" style="display: none">
 				<div id="help_parent"></div>
 			</div>
 			<div id="chatbox" style="margin-left: 5%">
@@ -32,7 +32,7 @@
 					<div id="void"></div>
 				</div>
 				<div id="input">
-					<button id="help_button" onclick="useMe()"></button>
+					<button id="help_button" onclick="toggleHelp()"></button>
 					<input id="send" type="text"/>
 					<button id="send_button" onclick="sendMessage()"></button>
 				</div>

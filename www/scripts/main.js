@@ -18,22 +18,27 @@ console.log(app.commands.parse("/background"))
 /**
  * Public function for hide and show help tab
  */
-window.useMe = function useMe() {
+window.toggleHelp = function toggleHelp() {
     switch (document.getElementById("help").style.display) {
         case "none":
+            // Disappear
             document.getElementById("body").style.columnCount = "2";
             document.getElementById("help").style.display = "";
             document.getElementById("chatbox").style.marginLeft = "0%";
+            document.getElementById("help").classList.replace("help_disappear", "help_appear")
             break;
         case "":
+            // Appear
             document.getElementById("body").style.clear;
             document.getElementById("help").style.display = "none";
             document.getElementById("chatbox").style.marginLeft = "1%";
+            document.getElementById("help").classList.replace("help_appear", "help_disappear")
             break;
         default:
             document.getElementById("body").style.columnCount = "2";
             document.getElementById("help").style.display = "";
             document.getElementById("chatbox").style.marginLeft = "0%";
+            document.getElementById("help").classList.replace("help_disappear", "help_appear")
     }
 }
 
@@ -115,5 +120,5 @@ for(const [, value] of Object.entries(app.commands.commandsList)){
     document.getElementById("help").insertBefore(newDiv, parentDiv);
 }
 
-useMe()
+toggleHelp()
 app.sendBotMessage("Bonjour, comment puis-je vous aider?")
