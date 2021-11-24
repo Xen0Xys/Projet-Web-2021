@@ -13,4 +13,12 @@ function zeroFilled(number, zerosCount){
     return number + ""; // always return a string
 }
 
-export {zeroFilled}
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
+
+export {zeroFilled, sleep}

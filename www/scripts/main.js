@@ -21,32 +21,32 @@ console.log(app.commands.parse("/background"))
 window.useMe = function useMe() {
     switch (document.getElementById("help").style.display) {
         case "none":
-            document.getElementsByTagName("main")[0].style.columnCount = "2";
-            document.getElementById("help").style.display = "flex";
+            document.getElementById("body").style.columnCount = "2";
+            document.getElementById("help").style.display = "";
             document.getElementById("chatbox").style.marginLeft = "0%";
             break;
-        case "flex":
-            document.getElementsByTagName("main")[0].style.clear
+        case "":
+            document.getElementById("body").style.clear;
             document.getElementById("help").style.display = "none";
             document.getElementById("chatbox").style.marginLeft = "1%";
             break;
         default:
-            document.getElementsByTagName("main")[0].style.columnCount = "2";
-            document.getElementById("help").style.display = "flex";
+            document.getElementById("body").style.columnCount = "2";
+            document.getElementById("help").style.display = "";
             document.getElementById("chatbox").style.marginLeft = "0%";
     }
 }
 
 window.showBar = function showBar() {
-    switch (document.getElementById("insearch").style.visibility) {
-        case "hidden":
-            document.getElementById("insearch").style.visibility = "visible";
+    switch (document.getElementById("insearch").style.display) {
+        case "none":
+            document.getElementById("insearch").style.display = "";
             break;
-        case "visible":
-            document.getElementById("insearch").style.visibility = "hidden";
+        case "":
+            document.getElementById("insearch").style.display = "none";
             break;
         default:
-            document.getElementById("insearch").style.visibility = "visible";
+            document.getElementById("insearch").style.display = "";
     }
 }
 
@@ -94,15 +94,6 @@ document.getElementById("send").addEventListener("keydown", function(event) {
     }
 })
 
-document.getElementById("insearch").addEventListener("input", function(event) {
-    let value = document.getElementById("insearch").value
-    app.clearMessagesDisplay()
-    let messages = app.getMessageListWithFilter(value)
-    for(let i = 0; i < messages.length; i++){
-        app.displayMessage(messages[i])
-    }
-})
-
 /**
  * Public function when help element is clicked
  * @param event Click event
@@ -121,8 +112,6 @@ window.helpClicked = function (event){
     }
 }
 
-
-
 // Display command help:
 for(const [, value] of Object.entries(app.commands.commandsList)){
     // Create new div element
@@ -138,4 +127,6 @@ for(const [, value] of Object.entries(app.commands.commandsList)){
     const parentDiv = document.getElementById('help_parent');
     document.getElementById("help").insertBefore(newDiv, parentDiv);
 }
+
+useMe()
 app.sendBotMessage("Bonjour, comment puis-je vous aider?")
