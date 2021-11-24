@@ -94,6 +94,15 @@ document.getElementById("send").addEventListener("keydown", function(event) {
     }
 })
 
+document.getElementById("insearch").addEventListener("input", function(event) {
+    let value = document.getElementById("insearch").value
+    app.clearMessagesDisplay()
+    let messages = app.getMessageListWithFilter(value)
+    for(let i = 0; i < messages.length; i++){
+        app.displayMessage(messages[i])
+    }
+})
+
 /**
  * Public function when help element is clicked
  * @param event Click event
@@ -111,6 +120,8 @@ window.helpClicked = function (event){
         }
     }
 }
+
+
 
 // Display command help:
 for(const [, value] of Object.entries(app.commands.commandsList)){

@@ -93,12 +93,16 @@ function App() {
     this.getMessageListWithFilter = function(filter){
         const filteredMessageList = [];
         for(let i=0; i<this.messageList.length; i++){
-            if(this.messageList[i].content.includes(filter)){
+            if(this.messageList[i].content.toLowerCase().includes(filter.toLowerCase())){
                 filteredMessageList.push(this.messageList[i]);
             }
         }
         return filteredMessageList;
     };
+
+    this.clearMessagesDisplay = function (){
+        document.querySelectorAll('.message').forEach(e => e.remove());
+    }
     console.log("App loaded!")
 }
 
