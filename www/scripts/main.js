@@ -43,6 +43,19 @@ window.toggleHelp = function toggleHelp() {
     }
 }
 
+window.showBar = function showBar() {
+    switch (document.getElementById("insearch").style.display) {
+        case "none":
+            document.getElementById("insearch").style.display = "";
+            break;
+        case "":
+            document.getElementById("insearch").style.display = "none";
+            break;
+        default:
+            document.getElementById("insearch").style.display = "";
+    }
+}
+
 let sentList = [];
 let currentSelected = -1;
 /**
