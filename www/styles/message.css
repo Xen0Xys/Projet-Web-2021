@@ -1,0 +1,24 @@
+/*Message part*/
+.message {
+	order: 1;
+	padding: 5px;
+	border-radius: 10px;
+	margin: -7px 7px 7px;
+	max-width: 400px;
+	word-wrap: break-word;
+}
+.user {
+	align-self: flex-end;
+	text-align: right;
+	background-color: #0056F5;
+}
+.bot {
+	align-self: flex-start;
+	text-align: left;
+	background-color: #707070;
+}
+.message_hour{
+	margin-bottom: -8px;
+	font-size: 92%;
+}
+.message_content{ margin-top: -8px; }

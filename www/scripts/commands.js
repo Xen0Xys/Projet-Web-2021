@@ -153,7 +153,7 @@ function Commands(_app) {
      */
     this.clearCommand = function (){
         app.messageList = [];
-        document.querySelectorAll('.message').forEach(e => e.remove());
+        app.clearMessagesDisplay()
         app.sendBotMessage("Bonjour, comment puis-je vous aider?")
     };
     /**

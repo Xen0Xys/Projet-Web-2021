@@ -1,0 +1,118 @@
+@import "help.css";
+@import "chatbox.css";
+/*Global part*/
+html, body, main, #help, #chatbox, #chat, #input, #bar, #search_bar { display: flex; }
+html {
+	font-family: 'Roboto', sans-serif;
+	height: 100%;
+}
+body { background-color: #262626; }
+main { column-gap: 0.5%; }
+body, main { flex: 1 auto; }
+p { margin: 0 0 0 0; }
+#help, #chatbox {
+	margin: 1% 0% 1% 0%;
+	background-color: #404040;
+	flex-direction: column;
+}
+
+/* waiting bugfix webkit in mozilla firefox */
+/* Scrollbar part */
+::-webkit-scrollbar {
+	width: 10px;
+}
+::-webkit-scrollbar-track {
+	background: #404040;
+	border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+	background: #707070;
+	border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #555555;
+}
+
+/* Animation part (WIP) */
+.animated{
+	animation-iteration-count: 1;
+	animation-duration: 0.3s;
+	animation-fill-mode: forwards;
+	animation-name: messageAnimation;
+}
+@keyframes messageAnimation {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.help_appear{
+	animation-iteration-count: 1;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	animation-name: helpAppearAnimation;
+}
+.help_disappear{
+	animation-iteration-count: 1;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	animation-name: helpDisappearAnimation;
+}
+
+.help_button_appear{
+	animation-iteration-count: 1;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	animation-name: helpButtonAppearAnimation;
+}
+.help_button_disappear{
+	animation-iteration-count: 1;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	animation-name: helpButtonDisappearAnimation;
+}
+
+@keyframes helpAppearAnimation {
+	from {
+		max-width: 0;
+		visibility: visible;
+		display: flex; !important;
+	}
+	to {
+		max-width: 30%;
+	}
+}
+@keyframes helpDisappearAnimation {
+	from {
+		max-width: 30%;
+		background-color: #333333;
+	}
+	to {
+		max-width: 0;
+		background-color: #262626;
+		visibility: hidden;
+		display: none; !important;
+	}
+}
+
+@keyframes helpButtonAppearAnimation {
+	from {
+		max-width: 0;
+	}
+	to {
+		max-width: 100%;
+	}
+}
+@keyframes helpButtonDisappearAnimation {
+	from {
+		max-width: 100%;
+		background-color: #333333;
+	}
+	to {
+		max-width: 0;
+		background-color: #262626;
+	}
+}
