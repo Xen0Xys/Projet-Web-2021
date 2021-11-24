@@ -18,22 +18,25 @@ console.log(app.commands.parse("/background"))
 /**
  * Public function for hide and show help tab
  */
-window.useMe = function useMe() {
-    switch (document.getElementById("help").style.display) {
-        case "none":
+let helpShow = true
+window.toggleHelp = function toggleHelp() {
+    switch (helpShow) {
+        case false:
+            // Appear
             document.getElementById("body").style.columnCount = "2";
             document.getElementById("help").style.display = "";
             document.getElementById("chatbox").style.marginLeft = "0%";
+            document.getElementById("help").classList.replace("help_disappear", "help_appear")
+            helpShow = true;
             break;
-        case "":
+        case true:
+            // Disappear
+            document.getElementById("help").classList.replace("help_appear", "help_disappear")
             document.getElementById("body").style.clear;
             document.getElementById("help").style.display = "none";
             document.getElementById("chatbox").style.marginLeft = "1%";
+            helpShow = false;
             break;
-        default:
-            document.getElementById("body").style.columnCount = "2";
-            document.getElementById("help").style.display = "";
-            document.getElementById("chatbox").style.marginLeft = "0%";
     }
 }
 
@@ -95,7 +98,7 @@ document.getElementById("send").addEventListener("keydown", function(event) {
 })
 
 
-document.getElementById("insearch").addEventListener("input", function(event) {
+document.getElementById("insearch").addEventListener("input", function() {
     let value = document.getElementById("insearch").value
     app.clearMessagesDisplay()
     let messages = app.getMessageListWithFilter(value)
@@ -138,5 +141,5 @@ for(const [, value] of Object.entries(app.commands.commandsList)){
     document.getElementById("help").insertBefore(newDiv, parentDiv);
 }
 
-useMe()
+toggleHelp()
 app.sendBotMessage("Bonjour, comment puis-je vous aider?")
