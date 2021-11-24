@@ -7,4 +7,14 @@ h1 {
 	align-items: baseline;
 	flex-flow: row;
 	box-shadow: 0 5px 5px black;
+	z-index: 1;
+}
+#search_bar{
+	flex-flow: row;
+}
+#button_search {
+	align-items: end;
+	background: url(../image/search-solid.svg) no-repeat center;
+	border: 2px solid #333333;
+	border-radius: 5px 5px 5px 5px;
 }

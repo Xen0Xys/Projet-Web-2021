@@ -38,15 +38,15 @@ window.useMe = function useMe() {
 }
 
 window.showBar = function showBar() {
-    switch (document.getElementById("insearch").style.display) {
-        case "none":
-            document.getElementById("insearch").style.display = "";
+    switch (document.getElementById("insearch").style.visibility) {
+        case "hidden":
+            document.getElementById("insearch").style.visibility = "visible";
             break;
-        case "":
-            document.getElementById("insearch").style.display = "none";
+        case "visible":
+            document.getElementById("insearch").style.visibility = "hidden";
             break;
         default:
-            document.getElementById("insearch").style.display = "";
+            document.getElementById("insearch").style.visibility = "visible";
     }
 }
 

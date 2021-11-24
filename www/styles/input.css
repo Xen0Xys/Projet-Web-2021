@@ -1,7 +1,5 @@
 #help_button{
 	background: url(../image/question-circle-regular.svg) no-repeat center;
-
-
 	border: 2px solid #333333;
 	border-radius: 5px 5px 0 5px;
 }
@@ -9,13 +7,4 @@
 	background: url(../image/paper-plane-regular.svg) no-repeat center;
 	border: 2px solid #333333;
 	border-radius: 5px 5px 5px 0;
-}
-#button_search {
-	align-items: end;
-	background: url(../image/search-solid.svg) no-repeat center;
-	border: 2px solid #333333;
-	border-radius: 5px 5px 5px 5px;
-}
-#search_bar{
-	flex-flow: row;
 }

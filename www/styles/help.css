@@ -12,6 +12,4 @@ a:link, a:visited {
 	 text-align: left;
 	 border-radius: 15px;
  }
-a:hover, a:active {
-	background-color: #555555;
-}
+a:hover, a:active { background-color: #555555; }
