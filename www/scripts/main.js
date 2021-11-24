@@ -1,4 +1,5 @@
 import {App} from "./app.js";
+import {sleep} from "./js_utils.js";
 
 /** @module Main */
 
@@ -21,18 +22,20 @@ console.log(app.commands.parse("/background"))
 window.toggleHelp = function toggleHelp() {
     switch (document.getElementById("help").style.display) {
         case "none":
-            // Disappear
+            // Appear
             document.getElementById("body").style.columnCount = "2";
             document.getElementById("help").style.display = "";
             document.getElementById("chatbox").style.marginLeft = "0%";
             document.getElementById("help").classList.replace("help_disappear", "help_appear")
             break;
         case "":
-            // Appear
+            // Disappear
+            document.getElementById("help").classList.replace("help_appear", "help_disappear")
+            // Sleep
+            sleep(1000)
             document.getElementById("body").style.clear;
             document.getElementById("help").style.display = "none";
             document.getElementById("chatbox").style.marginLeft = "1%";
-            document.getElementById("help").classList.replace("help_appear", "help_disappear")
             break;
         default:
             document.getElementById("body").style.columnCount = "2";
