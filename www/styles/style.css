@@ -172,23 +172,61 @@ button, input{
 .help_disappear{
 	animation-iteration-count: 1;
 	animation-duration: 1s;
-	animation-fill-mode: backwards;
+	animation-fill-mode: forwards;
 	animation-name: helpDisappearAnimation;
 }
 
+.help_button_appear{
+	animation-iteration-count: 1;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	animation-name: helpButtonAppearAnimation;
+}
+.help_button_disappear{
+	animation-iteration-count: 1;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	animation-name: helpButtonDisappearAnimation;
+}
+
 @keyframes helpAppearAnimation {
-	0% {
+	from {
 		max-width: 0;
+		visibility: visible;
+		display: flex; !important;
 	}
-	100% {
+	to {
 		max-width: 30%;
 	}
 }
 @keyframes helpDisappearAnimation {
-	0% {
+	from {
 		max-width: 30%;
+		background-color: #333333;
 	}
-	100% {
+	to {
 		max-width: 0;
+		background-color: #262626;
+		visibility: hidden;
+		display: none; !important;
+	}
+}
+
+@keyframes helpButtonAppearAnimation {
+	from {
+		max-width: 0;
+	}
+	to {
+		max-width: 100%;
+	}
+}
+@keyframes helpButtonDisappearAnimation {
+	from {
+		max-width: 100%;
+		background-color: #333333;
+	}
+	to {
+		max-width: 0;
+		background-color: #262626;
 	}
 }
