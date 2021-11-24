@@ -4,12 +4,12 @@
 }
 a:link, a:visited {
 	 color: black;
-	 background-color: #707070;
+	 background-color: var(--front-ui-color);
 	 display: inline-block;
 	 padding: 10px 20px;
-	 border: 2px solid #333333;
+	 border: 2px solid var(--border-color);
 	 text-decoration: none;
 	 text-align: left;
 	 border-radius: 15px;
  }
-a:hover, a:active { background-color: #555555; }
+a:hover, a:active { background-color: var(--hover-buttons-color); }
