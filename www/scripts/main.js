@@ -1,4 +1,5 @@
 import {App} from "./app.js";
+import {sleep} from "./js_utils.js";
 
 /** @module Main */
 
@@ -18,22 +19,27 @@ console.log(app.commands.parse("/background"))
 /**
  * Public function for hide and show help tab
  */
-window.useMe = function useMe() {
-    switch (document.getElementById("help").style.display) {
-        case "none":
+let helpShow = true
+window.toggleHelp = function toggleHelp() {
+    switch (helpShow) {
+        case false:
+            // Appear
             document.getElementById("body").style.columnCount = "2";
             document.getElementById("help").style.display = "";
             document.getElementById("chatbox").style.marginLeft = "0%";
+            document.getElementById("help").classList.replace("help_disappear", "help_appear")
+            document.querySelectorAll('#help').forEach(e => e.classList.replace("help_button_disappear", "help_button_appear"));
+            helpShow = true;
             break;
-        case "":
+        case true:
+            // Disappear
+            document.getElementById("help").classList.replace("help_appear", "help_disappear")
+            document.querySelectorAll('#help').forEach(e => e.classList.replace("help_button_appear", "help_button_disappear"));
             document.getElementById("body").style.clear;
-            document.getElementById("help").style.display = "none";
+            // document.getElementById("help").style.display = "none";
             document.getElementById("chatbox").style.marginLeft = "1%";
+            helpShow = false;
             break;
-        default:
-            document.getElementById("body").style.columnCount = "2";
-            document.getElementById("help").style.display = "";
-            document.getElementById("chatbox").style.marginLeft = "0%";
     }
 }
 
@@ -123,10 +129,11 @@ for(const [, value] of Object.entries(app.commands.commandsList)){
     newDiv.appendChild(newContent);
     // Add classes to div
     newDiv.classList.add("help");
+    newDiv.classList.add("help_button_appear");
     // Add new element to DOM
     const parentDiv = document.getElementById('help_parent');
     document.getElementById("help").insertBefore(newDiv, parentDiv);
 }
 
-useMe()
+// toggleHelp()
 app.sendBotMessage("Bonjour, comment puis-je vous aider?")
