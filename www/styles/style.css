@@ -114,7 +114,18 @@ button, input{
 
 #button_search {
 	align-items: end;
-	flex-basis: 0;
+
+	background: url(../image/search-solid.svg) no-repeat center;
+	width: 30px;
+	height: 30px;
+	color: black;
+	border: 2px solid #333333;
+	border-radius: 5px 5px 5px 5px;
+}
+
+#search_bar{
+	display: flex;
+	flex-flow: row;
 }
 
 /*Message part*/
