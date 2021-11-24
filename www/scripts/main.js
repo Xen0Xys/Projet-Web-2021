@@ -21,17 +21,17 @@ console.log(app.commands.parse("/background"))
 window.useMe = function useMe() {
     switch (document.getElementById("help").style.display) {
         case "none":
-            document.getElementById("body").style.columnCount = "2";
+            document.getElementsByTagName("main")[0].style.columnCount = "2";
             document.getElementById("help").style.display = "flex";
             document.getElementById("chatbox").style.marginLeft = "0%";
             break;
         case "flex":
-            document.getElementById("body").style.clear;
+            document.getElementsByTagName("main")[0].style.clear
             document.getElementById("help").style.display = "none";
             document.getElementById("chatbox").style.marginLeft = "1%";
             break;
         default:
-            document.getElementById("body").style.columnCount = "2";
+            document.getElementsByTagName("main")[0].style.columnCount = "2";
             document.getElementById("help").style.display = "flex";
             document.getElementById("chatbox").style.marginLeft = "0%";
     }
@@ -138,5 +138,4 @@ for(const [, value] of Object.entries(app.commands.commandsList)){
     const parentDiv = document.getElementById('help_parent');
     document.getElementById("help").insertBefore(newDiv, parentDiv);
 }
-
 app.sendBotMessage("Bonjour, comment puis-je vous aider?")

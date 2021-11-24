@@ -1,0 +1,10 @@
+h1 {
+	color: white;
+	flex-grow: 1;
+	text-align: center;
+}
+#bar {
+	align-items: baseline;
+	flex-flow: row;
+	box-shadow: 0 5px 5px black;
+}

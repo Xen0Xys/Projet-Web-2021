@@ -1,0 +1,41 @@
+input{
+	flex: 1;
+	background-color: #707070;
+	border: 2px solid #333333;
+	outline: none;
+	border-radius: 4px 4px 0 0;
+	font-size: 100%;
+}
+button, input{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+}
+#help_button{
+	background: url(../image/question-circle-regular.svg) no-repeat center;
+	width: 40px;
+	color: black;
+	border: 2px solid #333333;
+	border-radius: 5px 5px 0 5px;
+}
+#send_button{
+	background: url(../image/paper-plane-regular.svg) no-repeat center;
+	width: 40px;
+	color: black;
+	border: 2px solid #333333;
+	border-radius: 5px 5px 5px 0;
+}
+
+#button_search {
+	align-items: end;
+	background: url(../image/search-solid.svg) no-repeat center;
+	width: 30px;
+	height: 30px;
+	color: black;
+	border: 2px solid #333333;
+	border-radius: 5px 5px 5px 5px;
+}
+
+#search_bar{
+	flex-flow: row;
+}
