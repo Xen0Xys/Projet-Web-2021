@@ -123,5 +123,5 @@ for(const [, value] of Object.entries(app.commands.commandsList)){
     document.getElementById("help").insertBefore(newDiv, parentDiv);
 }
 
-toggleHelp()
+// toggleHelp()
 app.sendBotMessage("Bonjour, comment puis-je vous aider?")

@@ -49,7 +49,6 @@ p{
 	margin-top: 0;
 	margin-bottom: 0;
 }
-
 a:link, a:visited {
 	color: black;
 	background-color: #707070;
@@ -173,7 +172,7 @@ button, input{
 .help_disappear{
 	animation-iteration-count: 1;
 	animation-duration: 1s;
-	animation-fill-mode: forwards;
+	animation-fill-mode: backwards;
 	animation-name: helpDisappearAnimation;
 }
 
