@@ -1,7 +1,7 @@
 #bar {
 	flex-flow: row;
 	align-items: center;
-	box-shadow: 0 5px 5px black;
+	/*box-shadow: 0 5px 5px black;*/
 }
 h1 {
 	flex: 1 auto;
