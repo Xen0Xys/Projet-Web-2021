@@ -1,14 +1,15 @@
-h1 {
-	color: white;
-	text-align: center;
-}
 #bar {
 	flex-flow: row;
 	align-items: center;
 	box-shadow: 0 5px 5px black;
-	z-index: 1;
+}
+h1 {
+	flex: 1 auto;
+	color: white;
+	text-align: center;
 }
 #search_zone {
+	display: flex;
 	align-items: stretch;
 }
 #button_search {

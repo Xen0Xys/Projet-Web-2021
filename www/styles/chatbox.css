@@ -2,7 +2,9 @@
 @import "input.css";
 @import "message.css";
 /*Global part*/
-button, input{ padding: 5px 5px 5px 5px; }
+button, input {
+	padding: 5px 5px 5px 5px;
+}
 input {
 	flex: 1 auto;
 	background-color: #707070;
@@ -15,9 +17,15 @@ button {
 	flex: 0 auto;
 	color: black;
 }
+#chatbox, #chat, #input, #bar {
+	display: flex;
+}
 /*Chatbox part*/
-#chatbox, #chat { flex: 1 auto; }
+#chatbox, #chat {
+	flex: 1 auto;
+}
 #chatbox {
+	margin: 1% 1% 1% 0;
 	order: 1;
 	border-radius: 15px 15px 5px 5px;
 }
@@ -26,6 +34,11 @@ button {
 	overflow: auto;
 	padding-top: 20px;
 }
-#chat > :first-child { margin-top: auto !important; }
+#chat > :first-child {
+	margin-top: auto !important;
+}
 /*Input bar part*/
-#input, #bar { margin: auto 0 0; }
+#input, #bar {
+	margin: auto 0 0;
+	z-index: 1;
+}
