@@ -1,19 +1,17 @@
 h1 {
 	color: white;
-	flex-grow: 1;
 	text-align: center;
 }
 #bar {
-	align-items: baseline;
 	flex-flow: row;
+	align-items: center;
 	box-shadow: 0 5px 5px black;
 	z-index: 1;
 }
-#search_bar{
-	flex-flow: row;
+#search_zone {
+	align-items: stretch;
 }
 #button_search {
-	align-items: flex-end;
 	background: url(../image/search-solid.svg) no-repeat center;
 	border: 2px solid #333333;
 	border-radius: 5px 5px 5px 5px;

@@ -41,15 +41,15 @@ window.toggleHelp = function toggleHelp() {
 }
 
 window.showBar = function showBar() {
-    switch (document.getElementById("insearch").style.visibility) {
-        case "hidden":
-            document.getElementById("insearch").style.visibility = "visible";
+    switch (document.getElementById("insearch").style.display) {
+        case "none":
+            document.getElementById("insearch").style.display = "";
             break;
-        case "visible":
-            document.getElementById("insearch").style.visibility = "hidden";
+        case "":
+            document.getElementById("insearch").style.display = "none";
             break;
         default:
-            document.getElementById("insearch").style.visibility = "visible";
+            document.getElementById("insearch").style.display = "";
     }
 }
 

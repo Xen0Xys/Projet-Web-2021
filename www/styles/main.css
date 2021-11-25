@@ -1,14 +1,14 @@
 @import "help.css";
 @import "chatbox.css";
 /*Global part*/
-html, body, main, #help, #chatbox, #chat, #input, #bar, #search_bar { display: flex; }
+html, body, main, #help, #chatbox, #chat, #input, #bar, #search_bar,#search_zone { display: flex; }
 html {
 	font-family: 'Roboto', sans-serif;
 	height: 100%;
 }
 body { background-color: #262626; }
 main { column-gap: 0.5%; }
-body, main { flex: 1 auto; }
+body, main, h1 { flex: 1 auto; }
 p { margin: 0 0 0 0; }
 #help, #chatbox {
 	margin: 1% 0 1% 0;
