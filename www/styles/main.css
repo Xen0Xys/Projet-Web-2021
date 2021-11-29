@@ -17,6 +17,11 @@ html {
 	font-family: 'Roboto', sans-serif;
 	height: 100%;
 }
+
+input {
+	outline:none;
+}
+
 body { background-color: var(--background-color); }
 main { column-gap: 0.5%; }
 body, main { flex: 1 auto; }
