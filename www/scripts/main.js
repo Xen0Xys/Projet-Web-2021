@@ -21,35 +21,35 @@ console.log(app.commands.parse("/background"))
 let helpShow = true
 window.toggleHelp = function toggleHelp() {
     switch (helpShow) {
-        case false:
+        case true:
             // Appear
             document.getElementById("body").style.columnCount = "2";
-            document.getElementById("help").style.display = "";
-            document.getElementById("chatbox").style.marginLeft = "0%";
+            document.getElementById("chatbox").style.marginLeft = "";
+            document.getElementById("help").style.display = "flex";
             document.getElementById("help").classList.replace("help_disappear", "help_appear")
-            helpShow = true;
+            helpShow = false;
             break;
-        case true:
+        case false:
             // Disappear
             document.getElementById("help").classList.replace("help_appear", "help_disappear")
-            document.getElementById("body").style.clear;
+            document.getElementById("body").style.columnCount = "";
             document.getElementById("help").style.display = "none";
             document.getElementById("chatbox").style.marginLeft = "1%";
-            helpShow = false;
+            helpShow = true;
             break;
     }
 }
 
 window.showBar = function showBar() {
-    switch (document.getElementById("insearch").style.visibility) {
-        case "hidden":
-            document.getElementById("insearch").style.visibility = "visible";
+    switch (document.getElementById("insearch").style.display) {
+        case "none":
+            document.getElementById("insearch").style.display = "";
             break;
-        case "visible":
-            document.getElementById("insearch").style.visibility = "hidden";
+        case "":
+            document.getElementById("insearch").style.display = "none";
             break;
         default:
-            document.getElementById("insearch").style.visibility = "visible";
+            document.getElementById("insearch").style.display = "";
     }
 }
 
@@ -140,6 +140,5 @@ for(const [, value] of Object.entries(app.commands.commandsList)){
     const parentDiv = document.getElementById('help_parent');
     document.getElementById("help").insertBefore(newDiv, parentDiv);
 }
-
-toggleHelp()
+toggleHelp();
 app.sendBotMessage("Bonjour, comment puis-je vous aider?")

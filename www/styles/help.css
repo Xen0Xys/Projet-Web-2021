@@ -1,4 +1,6 @@
 #help {
+	display: flex;
+	margin: 1% 0 1% 1%;
 	order: 0;
 	border-radius: 15px;
 }
@@ -12,4 +14,6 @@ a:link, a:visited {
 	 text-align: left;
 	 border-radius: 15px;
  }
-a:hover, a:active { background-color: #555555; }
+a:hover, a:active {
+	background-color: #555555;
+}
