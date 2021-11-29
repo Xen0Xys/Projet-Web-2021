@@ -1,5 +1,15 @@
 @import "help.css";
 @import "chatbox.css";
+
+/*Globals colors*/
+:root{
+	--background-color: #121212;
+	--back-ui-color: #2B2B2B;
+	--front-ui-color: #5E5E5E;
+	--hover-buttons-color: #424242;
+	--border-color: #1C1C1C;
+}
+
 /*Global part*/
 html, body, main, #help, #chatbox, #chat, #input, #bar, #search_bar { display: flex; }
 html {
