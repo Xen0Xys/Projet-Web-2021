@@ -1,53 +1,36 @@
 @import "help.css";
 @import "chatbox.css";
-
-/*Globals colors*/
-:root{
-	--background-color: #121212;
-	--back-ui-color: #2B2B2B;
-	--front-ui-color: #5E5E5E;
-	--hover-buttons-color: #424242;
-	--border-color: #1C1C1C;
-}
-
-
 /*Global part*/
 html, body, main, #help, #chatbox, #chat, #input, #bar, #search_bar { display: flex; }
 html {
 	font-family: 'Roboto', sans-serif;
 	height: 100%;
 }
-
-input {
-	outline:none;
-}
-
-body { background-color: var(--background-color); }
+body { background-color: #262626; }
 main { column-gap: 0.5%; }
 body, main { flex: 1 auto; }
 p { margin: 0 0 0 0; }
 #help, #chatbox {
 	margin: 1% 0 1% 0;
-	background-color: var(--back-ui-color);
+	background-color: #404040;
 	flex-direction: column;
 }
 
 /* waiting bugfix webkit in mozilla firefox */
 /* Scrollbar part */
 ::-webkit-scrollbar {
-	width: 12px;
+	width: 10px;
 }
 ::-webkit-scrollbar-track {
-	background: var(--back-ui-color);
+	background: #404040;
 	border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb {
-	background: var(--front-ui-color);
+	background: #707070;
 	border-radius: 5px;
-	border: 2px solid var(--border-color);
 }
 ::-webkit-scrollbar-thumb:hover {
-	background: var(--hover-buttons-color);
+	background: #555555;
 }
 
 /* Animation part (WIP) */
