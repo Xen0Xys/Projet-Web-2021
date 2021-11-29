@@ -1,26 +1,31 @@
 @import "help.css";
 @import "chatbox.css";
+
+/*Globals colors*/
+:root{
+	--background-color: #121212;
+	--back-ui-color: #2B2B2B;
+	--front-ui-color: #5E5E5E;
+	--hover-buttons-color: #424242;
+	--border-color: #1C1C1C;
+}
+
 /*Global part*/
-html, body, main {
-	display: flex;
-}
+html, body, main, #help, #chatbox, #chat, #input, #bar, #search_bar { display: flex; }
 html {
-	height: 100%;
 	font-family: 'Roboto', sans-serif;
+	height: 100%;
 }
-body, main {
-	flex: 1 auto;
-}
-body {
-	background-color: #262626;
-}
-main {
-	column-gap: 0.5%;
-}
+body { background-color: #262626; }
+main { column-gap: 0.5%; }
+body, main { flex: 1 auto; }
+p { margin: 0 0 0 0; }
 #help, #chatbox {
+	margin: 1% 0 1% 0;
 	background-color: #404040;
 	flex-direction: column;
 }
+
 /* waiting bugfix webkit in mozilla firefox */
 /* Scrollbar part */
 ::-webkit-scrollbar {

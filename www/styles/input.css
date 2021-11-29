@@ -1,10 +1,13 @@
 #help_button{
 	background: url(../image/question-circle-regular.svg) no-repeat center;
-	border: 2px solid #333333;
+	border: 2px solid var(--border-color);
 	border-radius: 5px 5px 0 5px;
+}
+#help_button:hover, #send_button:hover, #button_search:hover{
+	background-color: var(--hover-buttons-color);
 }
 #send_button{
 	background: url(../image/paper-plane-regular.svg) no-repeat center;
-	border: 2px solid #333333;
+	border: 2px solid var(--border-color);
 	border-radius: 5px 5px 5px 0;
 }

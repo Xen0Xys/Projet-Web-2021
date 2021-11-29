@@ -16,7 +16,7 @@ p { margin: 0 0 0 0; }
 .bot {
 	align-self: flex-start;
 	text-align: left;
-	background-color: #707070;
+	background-color: var(--front-ui-color);
 }
 .message_hour{
 	margin-bottom: -8px;
