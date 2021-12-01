@@ -7,15 +7,15 @@ class Commands{
     constructor(_app){
         this.app = _app;
         this.commandsList = {
-            "/debug": {"argsCount": 0, "optionalArgs": true, "executor": this.debugCommand, "description": "/debug [message]: Debug command"},
-            "/help": {"argsCount": 0, "optionalArgs": false, "executor": this.helpCommand, "description": "/help: Send help message"},
-            "/loremIpsum": {"argsCount": 0, "optionalArgs": false, "executor": this.loremIpsumCommand, "description": "/loremIpsum: Send lorem ipsum"},
-            "/background": {"argsCount": 1, "optionalArgs": false, "executor": this.backgroundCommand, "description": "/background <color>: Change background color"},
-            "/messageColor": {"argsCount": 1, "optionalArgs": false, "executor": this.messageColorCommand, "description": "/messageColor <color>: Change message color"},
-            "/messageSize": {"argsCount": 1, "optionalArgs": false, "executor": this.messageSizeCommand, "description": "/messageSize <size>: Change message size"},
-            "/messageBackground": {"argsCount": 1, "optionalArgs": false, "executor": this.messageBackgroundCommand, "description": "/messageBackground <color>: Change message background color"},
-            "/clear": {"argsCount": 0, "optionalArgs": false, "executor": this.clearCommand, "description": "/clear: Clear messages"},
-            "/reset": {"argsCount": 0, "optionalArgs": false, "executor": this.resetCommand, "description": "/reset: Reset page formatting"}
+            "/debug": {"argsCount": 0, "optionalArgs": true, "description": "/debug [message]: Debug command"},
+            "/help": {"argsCount": 0, "optionalArgs": false, "description": "/help: Send help message"},
+            "/loremIpsum": {"argsCount": 0, "optionalArgs": false, "description": "/loremIpsum: Send lorem ipsum"},
+            "/background": {"argsCount": 1, "optionalArgs": false, "description": "/background <color>: Change background color"},
+            "/messageColor": {"argsCount": 1, "optionalArgs": false, "description": "/messageColor <color>: Change message color"},
+            "/messageSize": {"argsCount": 1, "optionalArgs": false, "description": "/messageSize <size>: Change message size"},
+            "/messageBackground": {"argsCount": 1, "optionalArgs": false, "description": "/messageBackground <color>: Change message background color"},
+            "/clear": {"argsCount": 0, "optionalArgs": false, "description": "/clear: Clear messages"},
+            "/reset": {"argsCount": 0, "optionalArgs": false, "description": "/reset: Reset page formatting"}
         };
     }
 
@@ -34,7 +34,36 @@ class Commands{
                 // If there is enough arguments
                 if(commandArgs.length >= this.commandsList[commandName]["argsCount"]){
                     // Execute command
-                    this.commandsList[commandName]["executor"](commandArgs);
+                    // this.commandsList[commandName]["executor"](commandArgs);
+                    switch (commandName){
+                        case "/debug":
+                            this.debugCommand(commandArgs);
+                            break;
+                        case "/help":
+                            this.helpCommand();
+                            break;
+                        case "/loremIpsum":
+                            this.loremIpsumCommand();
+                            break;
+                        case "/background":
+                            this.backgroundCommand(commandArgs);
+                            break;
+                        case "/messageColor":
+                            this.messageColorCommand(commandArgs);
+                            break;
+                        case "/messageSize":
+                            this.messageSizeCommand(commandArgs);
+                            break;
+                        case "/messageBackground":
+                            this.messageBackgroundCommand(commandArgs);
+                            break;
+                        case "/clear":
+                            this.clearCommand();
+                            break;
+                        case "/reset":
+                            this.resetCommand();
+                            break;
+                    }
                     return 0;
                 }else{
                     return 2;
@@ -91,7 +120,8 @@ class Commands{
         if(args.length >= 1){
             message = args.join(" ")
         }
-        console.log(this.app)
+        console.log(this.app);
+        console.log(this.commandsList);
         this.app.sendBotMessage(message)
     }
     /**
