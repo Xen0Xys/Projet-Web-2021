@@ -5,18 +5,22 @@ import {Message} from "./message.js";
  * Main app object, with all app methods
  * @constructor
  */
-function App() {
-    // Constructor
-    console.log("Loading app...")
-    this.commands = new Commands(this);
-    this.messageList = [];
-    this.messageBackground = "";
+class App {
+    constructor() {
+        console.log("Loading app...")
+        this.commands = new Commands(this);
+        this.messageList = [];
+        this.messageBackground = "";
+        console.log("App loaded!")
+    }
+
+
 
     /**
      * Method call when user send a message
      * @param content Message sent by user
      */
-    this.sendUserMessage = function(content) {
+    sendUserMessage(content) {
         let message = new Message(content, "user", new Date().getTime());
         this.messageList.push(message);
         this.displayMessage(message);
@@ -39,7 +43,7 @@ function App() {
      * Method call when bot send a message
      * @param content Message sent by bot
      */
-    this.sendBotMessage = function(content) {
+    sendBotMessage(content) {
         let message = new Message(content, "bot", new Date().getTime());
         this.messageList.push(message);
         this.displayMessage(message);
@@ -49,7 +53,7 @@ function App() {
      * Display message
      * @param message Message object
      */
-    this.displayMessage = function (message){
+    displayMessage(message) {
         // Create new div element
         const masterMessageDiv = document.createElement("div");
         const hourText = document.createElement("div");
@@ -90,7 +94,7 @@ function App() {
      * @param filter Filter String, can be "" for getting all messages
      * @returns {*[]} List of messages filtered
      */
-    this.getMessageListWithFilter = function(filter){
+    getMessageListWithFilter(filter){
         const filteredMessageList = [];
         for(let i=0; i<this.messageList.length; i++){
             if(this.messageList[i].content.toLowerCase().includes(filter.toLowerCase())){
@@ -100,10 +104,10 @@ function App() {
         return filteredMessageList;
     };
 
-    this.clearMessagesDisplay = function (){
+    clearMessagesDisplay() {
         document.querySelectorAll('.message').forEach(e => e.remove());
     }
-    console.log("App loaded!")
+
 }
 
 export {App}
