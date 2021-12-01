@@ -3,16 +3,28 @@
  * @param _app App object
  * @constructor
  */
-function Commands(_app) {
-    // Constructor
-    const app = _app;
+class Commands{
+    constructor(_app){
+        this.app = _app;
+        this.commandsList = {
+            "/debug": {"argsCount": 0, "optionalArgs": true, "description": "/debug [message]: Debug command"},
+            "/help": {"argsCount": 0, "optionalArgs": false, "description": "/help: Send help message"},
+            "/loremIpsum": {"argsCount": 0, "optionalArgs": false, "description": "/loremIpsum: Send lorem ipsum"},
+            "/background": {"argsCount": 1, "optionalArgs": false, "description": "/background <color>: Change background color"},
+            "/messageColor": {"argsCount": 1, "optionalArgs": false, "description": "/messageColor <color>: Change message color"},
+            "/messageSize": {"argsCount": 1, "optionalArgs": false, "description": "/messageSize <size>: Change message size"},
+            "/messageBackground": {"argsCount": 1, "optionalArgs": false, "description": "/messageBackground <color>: Change message background color"},
+            "/clear": {"argsCount": 0, "optionalArgs": false, "description": "/clear: Clear messages"},
+            "/reset": {"argsCount": 0, "optionalArgs": false, "description": "/reset: Reset page formatting"}
+        };
+    }
 
     /**
      * Execute right function from given message
      * @param message Given message
      * @return {number} 0: executed; 1: unknown; 2: not enough arguments; 3: not a command
      */
-    this.parse = function(message){
+    parse(message){
         // If message is a command
         if(message.startsWith("/") && !message.startsWith("/ ")){
             let commandName = message.split(" ")[0];
@@ -22,7 +34,36 @@ function Commands(_app) {
                 // If there is enough arguments
                 if(commandArgs.length >= this.commandsList[commandName]["argsCount"]){
                     // Execute command
-                    this.commandsList[commandName]["executor"](commandArgs);
+                    // this.commandsList[commandName]["executor"](commandArgs);
+                    switch (commandName){
+                        case "/debug":
+                            this.debugCommand(commandArgs);
+                            break;
+                        case "/help":
+                            this.helpCommand();
+                            break;
+                        case "/loremIpsum":
+                            this.loremIpsumCommand();
+                            break;
+                        case "/background":
+                            this.backgroundCommand(commandArgs);
+                            break;
+                        case "/messageColor":
+                            this.messageColorCommand(commandArgs);
+                            break;
+                        case "/messageSize":
+                            this.messageSizeCommand(commandArgs);
+                            break;
+                        case "/messageBackground":
+                            this.messageBackgroundCommand(commandArgs);
+                            break;
+                        case "/clear":
+                            this.clearCommand();
+                            break;
+                        case "/reset":
+                            this.resetCommand();
+                            break;
+                    }
                     return 0;
                 }else{
                     return 2;
@@ -33,15 +74,14 @@ function Commands(_app) {
         }else{
             return 3;
         }
-
-    };
+    }
 
     /**
      * Check if given command is declared in commandsExecutorsDict
      * @param command Command name
      * @returns {boolean} True if command exist, false if not
      */
-    this.isCommandExist = function (command){
+    isCommandExist(command){
         let commandsList = this.getCommandList();
         for(let i = 0; i < commandsList.length; i++){
             if(command.toLowerCase() === commandsList[i].toLowerCase()){
@@ -49,44 +89,46 @@ function Commands(_app) {
             }
         }
         return false;
-    };
+    }
 
     /**
      * Get arguments from given message
      * @param message Given Message
      * @returns {*|string[]} List of arguments
      */
-    this.getArguments = function(message){
+    getArguments(message){
         const tempList = message.split(" ");
         tempList.shift();
         return tempList;
-    };
+    }
 
     /**
      * Get command list
      * @returns {string[]} Command list (with "/")
      */
-    this.getCommandList = function (){
+    getCommandList() {
         return Object.keys(this.commandsList);
-    };
+    }
 
     // Commands executors
     /**
      * Debug command
      * @param args Message to send
      */
-    this.debugCommand = function (args){
+    debugCommand(args){
         let message = "Message template!"
         if(args.length >= 1){
             message = args.join(" ")
         }
-        app.sendBotMessage(message)
+        console.log(this.app);
+        console.log(this.commandsList);
+        this.app.sendBotMessage(message)
     }
     /**
      * Basic help command
      */
-    this.helpCommand = function (){
-        app.sendBotMessage("Besoin d'aide? Je suis la:\n" +
+    helpCommand(){
+        this.app.sendBotMessage("Besoin d'aide? Je suis la:\n" +
             " - Sur la gauche, vous trouverez les différentes commandes, vous pouvez cliquer dessus pour les coller dans la zone de saisie\n" +
             " - Si vous ne voyez pas ce panneau, vous pouvez cliquer sur le point d'interrogation en bas à gauche pour l'afficher\n" +
             " - La touche entrer permet d'envoyer une commande, et les flèches haut et bas permettent de naviguer dans les commandes déjà entrées\n" +
@@ -96,8 +138,8 @@ function Commands(_app) {
     /**
      * Send lorem ipsum
      */
-    this.loremIpsumCommand = function (){
-        app.sendBotMessage("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vulputate pharetra dolor ut aliquam. Etiam dignissim diam orci, venenatis cursus ipsum vehicula in. Donec quis venenatis orci. Praesent vitae semper leo. In augue tellus, consequat sit amet interdum vel, semper non augue. Duis maximus tortor arcu, nec porttitor tellus faucibus eget. Nullam a tortor lacinia, porta velit scelerisque, imperdiet erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque tincidunt urna at ornare placerat. Quisque aliquam facilisis urna vel tincidunt.\n" +
+    loremIpsumCommand(){
+        this.app.sendBotMessage("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vulputate pharetra dolor ut aliquam. Etiam dignissim diam orci, venenatis cursus ipsum vehicula in. Donec quis venenatis orci. Praesent vitae semper leo. In augue tellus, consequat sit amet interdum vel, semper non augue. Duis maximus tortor arcu, nec porttitor tellus faucibus eget. Nullam a tortor lacinia, porta velit scelerisque, imperdiet erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque tincidunt urna at ornare placerat. Quisque aliquam facilisis urna vel tincidunt.\n" +
             "\n" +
             "Pellentesque pharetra lacinia fermentum. Donec eu lacinia nibh, sed venenatis lorem. Nullam dapibus velit non est convallis pellentesque. Integer consequat tortor sit amet odio auctor, faucibus molestie justo venenatis. Vestibulum quis lectus viverra, lobortis leo id, suscipit elit. Pellentesque sed blandit arcu. Nunc imperdiet ex eget pulvinar blandit. Pellentesque in orci in dui sollicitudin aliquet.\n" +
             "\n" +
@@ -115,76 +157,63 @@ function Commands(_app) {
      * Change global background color
      * @param args Arguments
      */
-    this.backgroundCommand = function (args){
+    backgroundCommand(args){
         document.getElementById("help").style.background = args[0];
         document.getElementById("chatbox").style.background = args[0];
-        app.sendBotMessage("Le background a été changé par: " + args[0])
-    };
+        this.app.sendBotMessage("Le background a été changé par: " + args[0])
+    }
     /**
      * Change message color
      * @param args Arguments
      */
-    this.messageColorCommand = function (args){
+    messageColorCommand(args){
         document.getElementById("chat").style.color = args[0];
-        app.sendBotMessage("La couleur des messages a été changé par: " + args[0])
-    };
+        this.app.sendBotMessage("La couleur des messages a été changé par: " + args[0])
+    }
     /**
      * Change message size
      * @param args Arguments
      */
-    this.messageSizeCommand = function (args){
+    messageSizeCommand(args){
         document.getElementById("chat").style.fontSize = args[0] + "px";
-        app.sendBotMessage("La taille des message a été changé par: " + args[0])
-    };
+        this.app.sendBotMessage("La taille des message a été changé par: " + args[0])
+    }
     /**
      * Change message background color
      * @param args Arguments
      */
-    this.messageBackgroundCommand = function (args){
-        app.messageBackground = args[0];
+    messageBackgroundCommand(args){
+        this.app.messageBackground = args[0];
         let elements = document.getElementsByClassName("message");
         for(let i = 0; i < elements.length; i++){
             elements[i].style.background = args[0];
         }
-        app.sendBotMessage("Le background des messages a été changé par: " + args[0])
-    };
+        this.app.sendBotMessage("Le background des messages a été changé par: " + args[0])
+    }
     /**
      * Clear all messages
      */
-    this.clearCommand = function (){
-        app.messageList = [];
-        app.clearMessagesDisplay()
-        app.sendBotMessage("Bonjour, comment puis-je vous aider?")
-    };
+    clearCommand(){
+        this.app.messageList = [];
+        this.app.clearMessagesDisplay()
+        this.app.sendBotMessage("Bonjour, comment puis-je vous aider?")
+    }
     /**
      * Reset all changes
      */
-    this.resetCommand = function (){
+    resetCommand(){
         document.getElementById("help").style.background = "";
         document.getElementById("chatbox").style.background = "";
         document.getElementById("chat").style.color = "";
         document.getElementById("chat").style.fontSize = "";
 
         let elements = document.getElementsByClassName("message");
-        app.messageBackground = ""
+        this.app.messageBackground = ""
         for(let i = 0; i < elements.length; i++){
             elements[i].style.background = "";
         }
-        app.sendBotMessage("La mise en forme a été réinitialisé")
-    };
-
-    // Command list
-    this.commandsList = {
-        "/debug": {"argsCount": 0, "optionalArgs": true, "executor": this.debugCommand, "description": "/debug [message]: Debug command"},
-        "/help": {"argsCount": 0, "optionalArgs": false, "executor": this.helpCommand, "description": "/help: Send help message"},
-        "/loremIpsum": {"argsCount": 0, "optionalArgs": false, "executor": this.loremIpsumCommand, "description": "/loremIpsum: Send lorem ipsum"},
-        "/background": {"argsCount": 1, "optionalArgs": false, "executor": this.backgroundCommand, "description": "/background <color>: Change background color"},
-        "/messageColor": {"argsCount": 1, "optionalArgs": false, "executor": this.messageColorCommand, "description": "/messageColor <color>: Change message color"},
-        "/messageSize": {"argsCount": 1, "optionalArgs": false, "executor": this.messageSizeCommand, "description": "/messageSize <size>: Change message size"},
-        "/messageBackground": {"argsCount": 1, "optionalArgs": false, "executor": this.messageBackgroundCommand, "description": "/messageBackground <color>: Change message background color"},
-        "/clear": {"argsCount": 0, "optionalArgs": false, "executor": this.clearCommand, "description": "/clear: Clear messages"},
-        "/reset": {"argsCount": 0, "optionalArgs": false, "executor": this.resetCommand, "description": "/reset: Reset page formatting"}
-    };
+        this.app.sendBotMessage("La mise en forme a été réinitialisé")
+    }
 }
 
 export {Commands};
