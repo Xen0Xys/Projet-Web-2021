@@ -2,11 +2,11 @@
 @import "input.css";
 @import "message.css";
 /*Global part*/
-button, input{ padding: 5px 0 5px 5px; }
+button, input{ padding: 5px 0px 5px 5px; }
 input{
 	flex: 1 auto;
-	background-color: var(--front-ui-color);
-	border: 2px solid var(--border-color);
+	background-color: #707070;
+	border: 2px solid #333333;
 	border-radius: 4px 4px 0 0;
 	font-size: 100%;
 }
@@ -22,9 +22,18 @@ button {
 	border-radius: 15px 15px 5px 5px;
 }
 #chat {
+	z-index: 1;
 	flex-direction: column;
 	overflow: auto;
 	padding-top: 20px;
+	background:
+			linear-gradient(var(--back-ui-color) 33%, var(--back-ui-color)),
+			linear-gradient(var(--back-ui-color), var(--back-ui-color) 66%) 0 100%,
+			radial-gradient(farthest-side at 50% 0, rgba(0,0,0, 0.5), rgba(0,0,0,0)),
+			radial-gradient(farthest-side at 50% 100%, rgba(0,0,0, 0.5), rgba(0,0,0,0)) 0 100%;
+	background-repeat: no-repeat;
+	background-attachment: local, local, scroll, scroll;
+	background-size: 100% 72px, 100% 72px, 100% 24px, 100% 24px;
 }
 #chat > :first-child { margin-top: auto !important; }
 /*Input bar part*/
