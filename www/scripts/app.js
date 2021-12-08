@@ -1,11 +1,10 @@
 import {Commands} from "./commands.js";
 import {Message} from "./message.js";
 
-/**
- * Main app object, with all app methods
- * @constructor
- */
 class App {
+    /**
+     * Main app class
+     */
     constructor() {
         console.log("Loading app...")
         this.commands = new Commands(this);
@@ -13,8 +12,6 @@ class App {
         this.messageBackground = "";
         console.log("App loaded!")
     }
-
-
 
     /**
      * Method call when user send a message
@@ -50,7 +47,7 @@ class App {
     };
 
     /**
-     * Display message
+     * Method for message display
      * @param message Message object
      */
     displayMessage(message) {
@@ -104,6 +101,9 @@ class App {
         return filteredMessageList;
     };
 
+    /**
+     * Clear message display
+     */
     clearMessagesDisplay() {
         document.querySelectorAll('.message').forEach(e => e.remove());
     }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: message.js</title>
+    <title>JSDoc: Source: tests.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: message.js</h1>
+    <h1 class="page-title">Source: tests.js</h1>
 
     
 
@@ -26,40 +26,47 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import {zeroFilled} from "./js_utils.js";
+            <pre class="prettyprint source linenums"><code>import {getRandomHex, getRandomInt} from "./js_utils.js";
 
-/**
- * Message object
- * @param content Message content
- * @param sender Sender (may be any string)
- * @param timestamp Message sends timestamp
- * @constructor
- */
-class Message{
-    constructor(content, sender, timestamp){
-        this.content = content;
-        this.sender = sender;
-        this.timestamp = timestamp;
+class Tests{
+    /**
+     * Test class, use to test app
+     * @param commands Commands object
+     */
+    constructor(commands) {
+        this.commands = commands;
     }
 
     /**
-     * Get message date (defined from timestamp)
-     * @returns {Date} Date object
+     * Test method, runs all app commands
+     * @returns {number} State of tests, 0 is ok, other is error id (unique local command id)
      */
-    getDate(){
-        return new Date(this.timestamp);
-    };
-
-    /**
-     * Get formatted date "00h00" from timestamp
-     * @returns {string} String with time format "00h00"
-     */
-    getSendingTimeString(){
-        return (zeroFilled(this.getDate().getHours(), 2) + "h" + zeroFilled(this.getDate().getMinutes(), 2));
-    };
+    test() {
+        if(this.commands.debugCommand(["Test case"]) !== 0){
+            return 1;
+        }
+        if(this.commands.helpCommand() !== 0){
+            return 2;
+        }
+        if(this.commands.loremIpsumCommand() !== 0){
+            return 3;
+        }
+        if(this.commands.backgroundCommand([getRandomHex()]) !== 0){
+            return 4;
+        }
+        if(this.commands.messageColorCommand([getRandomHex()]) !== 0){
+            return 5;
+        }
+        if(this.commands.messageSizeCommand([getRandomInt(10, 20)]) !== 0){
+            return 6;
+        }
+        if(this.commands.messageBackgroundCommand([getRandomHex()]) !== 0){
+            return 7;
+        }
+    }
 }
 
-export {Message};</code></pre>
+export {Tests}</code></pre>
         </article>
     </section>
 

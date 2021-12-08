@@ -26,21 +26,39 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
+            <pre class="prettyprint source linenums"><code>import {Tests} from "./tests.js";
+/**
  * Command object
  * @param _app App object
  * @constructor
  */
-function Commands(_app) {
-    // Constructor
-    const app = _app;
+class Commands{
+    /**
+     * Commands object
+     * @param app Main app class instance
+     */
+    constructor(app){
+        this.app = app;
+        this.commandsList = {
+            "/debug": {"argsCount": 0, "optionalArgs": true, "description": "/debug [message]: Debug command"},
+            "/testCases": {"argsCount": 0, "optionalArgs": false, "description": "/testCases: Run a series of tests"},
+            "/help": {"argsCount": 0, "optionalArgs": false, "description": "/help: Send help message"},
+            "/loremIpsum": {"argsCount": 0, "optionalArgs": false, "description": "/loremIpsum: Send lorem ipsum"},
+            "/background": {"argsCount": 1, "optionalArgs": false, "description": "/background &lt;color>: Change background color"},
+            "/messageColor": {"argsCount": 1, "optionalArgs": false, "description": "/messageColor &lt;color>: Change message color"},
+            "/messageSize": {"argsCount": 1, "optionalArgs": false, "description": "/messageSize &lt;size>: Change message size"},
+            "/messageBackground": {"argsCount": 1, "optionalArgs": false, "description": "/messageBackground &lt;color>: Change message background color"},
+            "/clear": {"argsCount": 0, "optionalArgs": false, "description": "/clear: Clear messages"},
+            "/reset": {"argsCount": 0, "optionalArgs": false, "description": "/reset: Reset page formatting"}
+        };
+    }
 
     /**
      * Execute right function from given message
      * @param message Given message
      * @return {number} 0: executed; 1: unknown; 2: not enough arguments; 3: not a command
      */
-    this.parse = function(message){
+    parse(message){
         // If message is a command
         if(message.startsWith("/") &amp;&amp; !message.startsWith("/ ")){
             let commandName = message.split(" ")[0];
@@ -50,7 +68,39 @@ function Commands(_app) {
                 // If there is enough arguments
                 if(commandArgs.length >= this.commandsList[commandName]["argsCount"]){
                     // Execute command
-                    this.commandsList[commandName]["executor"](commandArgs);
+                    // this.commandsList[commandName]["executor"](commandArgs);
+                    switch (commandName){
+                        case "/debug":
+                            this.debugCommand(commandArgs);
+                            break;
+                        case "/testCases":
+                            this.testCasesCommand();
+                            break;
+                        case "/help":
+                            this.helpCommand();
+                            break;
+                        case "/loremIpsum":
+                            this.loremIpsumCommand();
+                            break;
+                        case "/background":
+                            this.backgroundCommand(commandArgs);
+                            break;
+                        case "/messageColor":
+                            this.messageColorCommand(commandArgs);
+                            break;
+                        case "/messageSize":
+                            this.messageSizeCommand(commandArgs);
+                            break;
+                        case "/messageBackground":
+                            this.messageBackgroundCommand(commandArgs);
+                            break;
+                        case "/clear":
+                            this.clearCommand();
+                            break;
+                        case "/reset":
+                            this.resetCommand();
+                            break;
+                    }
                     return 0;
                 }else{
                     return 2;
@@ -61,15 +111,14 @@ function Commands(_app) {
         }else{
             return 3;
         }
-
-    };
+    }
 
     /**
      * Check if given command is declared in commandsExecutorsDict
      * @param command Command name
      * @returns {boolean} True if command exist, false if not
      */
-    this.isCommandExist = function (command){
+    isCommandExist(command){
         let commandsList = this.getCommandList();
         for(let i = 0; i &lt; commandsList.length; i++){
             if(command.toLowerCase() === commandsList[i].toLowerCase()){
@@ -77,44 +126,63 @@ function Commands(_app) {
             }
         }
         return false;
-    };
+    }
 
     /**
      * Get arguments from given message
      * @param message Given Message
      * @returns {*|string[]} List of arguments
      */
-    this.getArguments = function(message){
+    getArguments(message){
         const tempList = message.split(" ");
         tempList.shift();
         return tempList;
-    };
+    }
 
     /**
      * Get command list
      * @returns {string[]} Command list (with "/")
      */
-    this.getCommandList = function (){
+    getCommandList() {
         return Object.keys(this.commandsList);
-    };
+    }
 
     // Commands executors
     /**
      * Debug command
-     * @param args Message to send
+     * @param args Messages to send
      */
-    this.debugCommand = function (args){
+    debugCommand(args){
         let message = "Message template!"
         if(args.length >= 1){
             message = args.join(" ")
         }
-        app.sendBotMessage(message)
+        this.app.sendBotMessage(message)
+        return 0;
     }
+    testCasesCommand() {
+        let tests = new Tests(this);
+        tests.test();
+    }
+
+    /**
+     * Basic help command
+     */
+    helpCommand(){
+        this.app.sendBotMessage("Besoin d'aide? Je suis la:\n" +
+            " - Sur la gauche, vous trouverez les différentes commandes, vous pouvez cliquer dessus pour les coller dans la zone de saisie\n" +
+            " - Si vous ne voyez pas ce panneau, vous pouvez cliquer sur le point d'interrogation en bas à gauche pour l'afficher\n" +
+            " - La touche entrer permet d'envoyer une commande, et les flèches haut et bas permettent de naviguer dans les commandes déjà entrées\n" +
+            "\n" +
+            "Bon courage!");
+        return 0;
+    }
+
     /**
      * Send lorem ipsum
      */
-    this.loremIpsumCommand = function (){
-        app.sendBotMessage("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vulputate pharetra dolor ut aliquam. Etiam dignissim diam orci, venenatis cursus ipsum vehicula in. Donec quis venenatis orci. Praesent vitae semper leo. In augue tellus, consequat sit amet interdum vel, semper non augue. Duis maximus tortor arcu, nec porttitor tellus faucibus eget. Nullam a tortor lacinia, porta velit scelerisque, imperdiet erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque tincidunt urna at ornare placerat. Quisque aliquam facilisis urna vel tincidunt.\n" +
+    loremIpsumCommand(){
+        this.app.sendBotMessage("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vulputate pharetra dolor ut aliquam. Etiam dignissim diam orci, venenatis cursus ipsum vehicula in. Donec quis venenatis orci. Praesent vitae semper leo. In augue tellus, consequat sit amet interdum vel, semper non augue. Duis maximus tortor arcu, nec porttitor tellus faucibus eget. Nullam a tortor lacinia, porta velit scelerisque, imperdiet erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque tincidunt urna at ornare placerat. Quisque aliquam facilisis urna vel tincidunt.\n" +
             "\n" +
             "Pellentesque pharetra lacinia fermentum. Donec eu lacinia nibh, sed venenatis lorem. Nullam dapibus velit non est convallis pellentesque. Integer consequat tortor sit amet odio auctor, faucibus molestie justo venenatis. Vestibulum quis lectus viverra, lobortis leo id, suscipit elit. Pellentesque sed blandit arcu. Nunc imperdiet ex eget pulvinar blandit. Pellentesque in orci in dui sollicitudin aliquet.\n" +
             "\n" +
@@ -127,79 +195,83 @@ function Commands(_app) {
             "Nulla rutrum volutpat lectus ac vestibulum. Praesent sit amet aliquam urna. Praesent euismod libero ut ornare feugiat. Vivamus scelerisque diam id felis lacinia, pellentesque suscipit nisi vulputate. Duis tempus lacinia urna ac aliquet. Aenean blandit ac dui at hendrerit. Pellentesque congue nisl a mauris feugiat interdum.\n" +
             "\n" +
             "Duis ut ligula quis tellus dapibus eleifend ut in lectus. Nullam accumsan arcu et rhoncus rhoncus. Phasellus commodo mi nunc, sed feugiat enim cursus quis. Mauris sodales tempus sapien eu euismod. Mauris mattis lacus massa, nec porttitor leo mattis eget. Integer suscipit sed tortor tempus pulvinar. Duis tempor enim.")
+        return 0;
     }
+
     /**
      * Change global background color
      * @param args Arguments
      */
-    this.backgroundCommand = function (args){
+    backgroundCommand(args){
         document.getElementById("help").style.background = args[0];
         document.getElementById("chatbox").style.background = args[0];
-        app.sendBotMessage("Le background a été changé par: " + args[0])
-    };
+        this.app.sendBotMessage("Le background a été changé par: " + args[0])
+        return 0;
+    }
+
     /**
      * Change message color
      * @param args Arguments
      */
-    this.messageColorCommand = function (args){
+    messageColorCommand(args){
         document.getElementById("chat").style.color = args[0];
-        app.sendBotMessage("La couleur des messages a été changé par: " + args[0])
-    };
+        this.app.sendBotMessage("La couleur des messages a été changé par: " + args[0])
+        return 0;
+    }
+
     /**
      * Change message size
      * @param args Arguments
      */
-    this.messageSizeCommand = function (args){
+    messageSizeCommand(args){
         document.getElementById("chat").style.fontSize = args[0] + "px";
-        app.sendBotMessage("La taille des message a été changé par: " + args[0])
-    };
+        this.app.sendBotMessage("La taille des message a été changé par: " + args[0])
+        return 0;
+    }
+
     /**
      * Change message background color
      * @param args Arguments
      */
-    this.messageBackgroundCommand = function (args){
-        app.messageBackground = args[0];
+    messageBackgroundCommand(args){
+        this.app.messageBackground = args[0];
         let elements = document.getElementsByClassName("message");
         for(let i = 0; i &lt; elements.length; i++){
             elements[i].style.background = args[0];
         }
-        app.sendBotMessage("Le background des messages a été changé par: " + args[0])
-    };
+        this.app.sendBotMessage("Le background des messages a été changé par: " + args[0])
+        return 0;
+    }
+
     /**
      * Clear all messages
      */
-    this.clearCommand = function (){
-        app.messageList = [];
-        document.querySelectorAll('.message').forEach(e => e.remove());
-    };
+    clearCommand(){
+        this.app.messageList = [];
+        this.app.clearMessagesDisplay()
+        this.app.sendBotMessage("Bonjour, comment puis-je vous aider?")
+        return 0;
+    }
+
     /**
      * Reset all changes
      */
-    this.resetCommand = function (){
+    resetCommand(){
         document.getElementById("help").style.background = "";
         document.getElementById("chatbox").style.background = "";
         document.getElementById("chat").style.color = "";
         document.getElementById("chat").style.fontSize = "";
 
         let elements = document.getElementsByClassName("message");
-        app.messageBackground = ""
+        this.app.messageBackground = ""
         for(let i = 0; i &lt; elements.length; i++){
             elements[i].style.background = "";
         }
-        app.sendBotMessage("La mise en forme a été réinitialisé")
-    };
+        this.app.sendBotMessage("La mise en forme a été réinitialisé")
+        return 0;
+    }
 
-    // Command list
-    this.commandsList = {
-        "/debug": {"argsCount": 0, "executor": this.debugCommand, "description": "/debug [message]: Debug command"},
-        "/loremIpsum": {"argsCount": 0, "executor": this.loremIpsumCommand, "description": "/loremIpsum: Send lorem ipsum"},
-        "/background": {"argsCount": 1, "executor": this.backgroundCommand, "description": "/background &lt;color>: Change background color"},
-        "/messageColor": {"argsCount": 1, "executor": this.messageColorCommand, "description": "/messageColor &lt;color>: Change message color"},
-        "/messageSize": {"argsCount": 1, "executor": this.messageSizeCommand, "description": "/messageSize &lt;size>: Change message size"},
-        "/messageBackground": {"argsCount": 1, "executor": this.messageBackgroundCommand, "description": "/messageBackground &lt;color>: Change message background color"},
-        "/clear": {"argsCount": 0, "executor": this.clearCommand, "description": "/clear: Clear messages"},
-        "/reset": {"argsCount": 0, "executor": this.resetCommand, "description": "/reset: Reset page formatting"}
-    };
+
 }
 
 export {Commands};</code></pre>
@@ -212,13 +284,13 @@ export {Commands};</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Main.html">Main</a></li></ul><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Message.html">Message</a></li></ul><h3>Global</h3><ul><li><a href="global.html#zeroFilled">zeroFilled</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-JsUtils.html">JsUtils</a></li><li><a href="module-Main.html">Main</a></li></ul><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Message.html">Message</a></li><li><a href="Tests.html">Tests</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Nov 17 2021 09:50:10 GMT+0100 (heure normale d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Dec 08 2021 17:13:13 GMT+0100 (heure normale d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>
