@@ -28,56 +28,88 @@
         <article>
             <pre class="prettyprint source linenums"><code>import {App} from "./app.js";
 
-/** @module Main */
+/**
+ * @module Main
+ * @description Main JS file
+ */
 
 const app = new App();
-/*
-// Debug
-app.sendUserMessage("Yolo")
-app.sendUserMessage("Test")
-app.sendUserMessage("oe")
-console.log(app.getMessageListWithFilter(""))
-let message = app.getMessageListWithFilter("")[0]
-console.log(message.getSendingTimeString())
-console.log(app.commands.parse("/background"))
- */
+
 
 // Functions
+
+let helpShow = true
 /**
- * Public function for hide and show help tab
+ * Public function that hide or show help tab
  */
-window.useMe = function useMe() {
-    switch (document.getElementById("help").style.display) {
+window.toggleHelp = function toggleHelp() {
+    switch (helpShow) {
+        case true:
+            // Appear
+            document.getElementById("body").style.columnCount = "2";
+            document.getElementById("chatbox").style.marginLeft = "";
+            document.getElementById("help").style.display = "flex";
+            document.getElementById("help").classList.replace("help_disappear", "help_appear")
+            helpShow = false;
+            break;
+        case false:
+            // Disappear
+            document.getElementById("help").classList.replace("help_appear", "help_disappear")
+            document.getElementById("body").style.columnCount = "";
+            document.getElementById("help").style.display = "none";
+            document.getElementById("chatbox").style.marginLeft = "1%";
+            helpShow = true;
+            break;
+    }
+}
+
+/**
+ * Public function that hide or show search bar
+ */
+window.showBar = function showBar() {
+    switch (document.getElementById("insearch").style.display) {
         case "none":
-            document.body.style.columnCount = "2";
-            document.getElementById("help").style.display = "";
-            document.getElementById("chatbox").style.marginLeft = "0%";
+            document.getElementById("insearch").style.display = "";
             break;
         case "":
-            document.body.style.clear;
-            document.getElementById("help").style.display = "none";
-            document.getElementById("chatbox").style.marginLeft = "5%";
+            document.getElementById("insearch").style.display = "none";
             break;
         default:
-            document.body.style.columnCount = "2";
-            document.getElementById("help").style.display = "";
-            document.getElementById("chatbox").style.marginLeft = "0%";
+            document.getElementById("insearch").style.display = "";
     }
 }
 
 let sentList = [];
 let currentSelected = -1;
 /**
- * Public function when a message is send
+ * Public function when a message is sent
  */
 window.sendMessage = function (){
     let element = document.getElementById("send");
-    if(element.value !== ""){
+    if(element.value.split(" ").join("") !== ""){
         sentList.unshift(element.value);
         app.sendUserMessage(element.value);
         element.value = "";
         let div = document.getElementById("chat");
         div.scrollTop = div.scrollHeight;
+    }
+}
+
+/**
+ * Public function when help element is clicked
+ * @param event Click event
+ */
+window.helpClicked = function (event){
+    for(const [key, value] of Object.entries(app.commands.commandsList)){
+        if(value !== "" &amp;&amp; event.target.textContent === (value["description"])){
+            document.getElementById("send").value = key;
+            document.getElementById("send").focus()
+            if(value["argsCount"] === 0){
+                if(value["optionalArgs"] === false){
+                    sendMessage()
+                }
+            }
+        }
     }
 }
 
@@ -110,17 +142,18 @@ document.getElementById("send").addEventListener("keydown", function(event) {
 })
 
 /**
- * Public function when help element is clicked
- * @param event Click event
+ * Event listener for message search
  */
-window.helpClicked = function (event){
-    for(const [key, value] of Object.entries(app.commands.commandsList)){
-        if(value !== "" &amp;&amp; event.target.textContent === (value["description"])){
-            document.getElementById("send").value = key;
-            document.getElementById("send").focus()
-        }
+document.getElementById("insearch").addEventListener("input", function() {
+    let value = document.getElementById("insearch").value
+    app.clearMessagesDisplay()
+    let messages = app.getMessageListWithFilter(value)
+    for(let i = 0; i &lt; messages.length; i++){
+        app.displayMessage(messages[i])
     }
-}
+})
+
+
 
 // Display command help:
 for(const [, value] of Object.entries(app.commands.commandsList)){
@@ -137,8 +170,8 @@ for(const [, value] of Object.entries(app.commands.commandsList)){
     const parentDiv = document.getElementById('help_parent');
     document.getElementById("help").insertBefore(newDiv, parentDiv);
 }
-
-useMe()</code></pre>
+toggleHelp();
+app.sendBotMessage("Bonjour, comment puis-je vous aider?")</code></pre>
         </article>
     </section>
 
@@ -148,13 +181,13 @@ useMe()</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Main.html">Main</a></li></ul><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Message.html">Message</a></li></ul><h3>Global</h3><ul><li><a href="global.html#zeroFilled">zeroFilled</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-JsUtils.html">JsUtils</a></li><li><a href="module-Main.html">Main</a></li></ul><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="Commands.html">Commands</a></li><li><a href="Message.html">Message</a></li><li><a href="Tests.html">Tests</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Nov 17 2021 09:50:10 GMT+0100 (heure normale d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Dec 08 2021 17:13:13 GMT+0100 (heure normale d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

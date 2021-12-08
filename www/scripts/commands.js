@@ -1,13 +1,19 @@
+import {Tests} from "./tests.js";
 /**
  * Command object
  * @param _app App object
  * @constructor
  */
 class Commands{
-    constructor(_app){
-        this.app = _app;
+    /**
+     * Commands object
+     * @param app Main app class instance
+     */
+    constructor(app){
+        this.app = app;
         this.commandsList = {
             "/debug": {"argsCount": 0, "optionalArgs": true, "description": "/debug [message]: Debug command"},
+            "/testCases": {"argsCount": 0, "optionalArgs": false, "description": "/testCases: Run a series of tests"},
             "/help": {"argsCount": 0, "optionalArgs": false, "description": "/help: Send help message"},
             "/loremIpsum": {"argsCount": 0, "optionalArgs": false, "description": "/loremIpsum: Send lorem ipsum"},
             "/background": {"argsCount": 1, "optionalArgs": false, "description": "/background <color>: Change background color"},
@@ -38,6 +44,9 @@ class Commands{
                     switch (commandName){
                         case "/debug":
                             this.debugCommand(commandArgs);
+                            break;
+                        case "/testCases":
+                            this.testCasesCommand();
                             break;
                         case "/help":
                             this.helpCommand();
@@ -113,17 +122,21 @@ class Commands{
     // Commands executors
     /**
      * Debug command
-     * @param args Message to send
+     * @param args Messages to send
      */
     debugCommand(args){
         let message = "Message template!"
         if(args.length >= 1){
             message = args.join(" ")
         }
-        console.log(this.app);
-        console.log(this.commandsList);
         this.app.sendBotMessage(message)
+        return 0;
     }
+    testCasesCommand() {
+        let tests = new Tests(this);
+        tests.test();
+    }
+
     /**
      * Basic help command
      */
@@ -133,8 +146,10 @@ class Commands{
             " - Si vous ne voyez pas ce panneau, vous pouvez cliquer sur le point d'interrogation en bas à gauche pour l'afficher\n" +
             " - La touche entrer permet d'envoyer une commande, et les flèches haut et bas permettent de naviguer dans les commandes déjà entrées\n" +
             "\n" +
-            "Bon courage!")
+            "Bon courage!");
+        return 0;
     }
+
     /**
      * Send lorem ipsum
      */
@@ -152,7 +167,9 @@ class Commands{
             "Nulla rutrum volutpat lectus ac vestibulum. Praesent sit amet aliquam urna. Praesent euismod libero ut ornare feugiat. Vivamus scelerisque diam id felis lacinia, pellentesque suscipit nisi vulputate. Duis tempus lacinia urna ac aliquet. Aenean blandit ac dui at hendrerit. Pellentesque congue nisl a mauris feugiat interdum.\n" +
             "\n" +
             "Duis ut ligula quis tellus dapibus eleifend ut in lectus. Nullam accumsan arcu et rhoncus rhoncus. Phasellus commodo mi nunc, sed feugiat enim cursus quis. Mauris sodales tempus sapien eu euismod. Mauris mattis lacus massa, nec porttitor leo mattis eget. Integer suscipit sed tortor tempus pulvinar. Duis tempor enim.")
+        return 0;
     }
+
     /**
      * Change global background color
      * @param args Arguments
@@ -161,7 +178,9 @@ class Commands{
         document.getElementById("help").style.background = args[0];
         document.getElementById("chatbox").style.background = args[0];
         this.app.sendBotMessage("Le background a été changé par: " + args[0])
+        return 0;
     }
+
     /**
      * Change message color
      * @param args Arguments
@@ -169,7 +188,9 @@ class Commands{
     messageColorCommand(args){
         document.getElementById("chat").style.color = args[0];
         this.app.sendBotMessage("La couleur des messages a été changé par: " + args[0])
+        return 0;
     }
+
     /**
      * Change message size
      * @param args Arguments
@@ -177,7 +198,9 @@ class Commands{
     messageSizeCommand(args){
         document.getElementById("chat").style.fontSize = args[0] + "px";
         this.app.sendBotMessage("La taille des message a été changé par: " + args[0])
+        return 0;
     }
+
     /**
      * Change message background color
      * @param args Arguments
@@ -189,7 +212,9 @@ class Commands{
             elements[i].style.background = args[0];
         }
         this.app.sendBotMessage("Le background des messages a été changé par: " + args[0])
+        return 0;
     }
+
     /**
      * Clear all messages
      */
@@ -197,7 +222,9 @@ class Commands{
         this.app.messageList = [];
         this.app.clearMessagesDisplay()
         this.app.sendBotMessage("Bonjour, comment puis-je vous aider?")
+        return 0;
     }
+
     /**
      * Reset all changes
      */
@@ -213,7 +240,10 @@ class Commands{
             elements[i].style.background = "";
         }
         this.app.sendBotMessage("La mise en forme a été réinitialisé")
+        return 0;
     }
+
+
 }
 
 export {Commands};

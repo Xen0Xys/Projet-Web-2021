@@ -1,24 +1,19 @@
 import {App} from "./app.js";
 
-/** @module Main */
+/**
+ * @module Main
+ * @description Main JS file
+ */
 
 const app = new App();
-/*
-// Debug
-app.sendUserMessage("Yolo")
-app.sendUserMessage("Test")
-app.sendUserMessage("oe")
-console.log(app.getMessageListWithFilter(""))
-let message = app.getMessageListWithFilter("")[0]
-console.log(message.getSendingTimeString())
-console.log(app.commands.parse("/background"))
- */
+
 
 // Functions
-/**
- * Public function for hide and show help tab
- */
+
 let helpShow = true
+/**
+ * Public function that hide or show help tab
+ */
 window.toggleHelp = function toggleHelp() {
     switch (helpShow) {
         case true:
@@ -40,6 +35,9 @@ window.toggleHelp = function toggleHelp() {
     }
 }
 
+/**
+ * Public function that hide or show search bar
+ */
 window.showBar = function showBar() {
     switch (document.getElementById("insearch").style.display) {
         case "none":
@@ -56,7 +54,7 @@ window.showBar = function showBar() {
 let sentList = [];
 let currentSelected = -1;
 /**
- * Public function when a message is send
+ * Public function when a message is sent
  */
 window.sendMessage = function (){
     let element = document.getElementById("send");
@@ -66,6 +64,24 @@ window.sendMessage = function (){
         element.value = "";
         let div = document.getElementById("chat");
         div.scrollTop = div.scrollHeight;
+    }
+}
+
+/**
+ * Public function when help element is clicked
+ * @param event Click event
+ */
+window.helpClicked = function (event){
+    for(const [key, value] of Object.entries(app.commands.commandsList)){
+        if(value !== "" && event.target.textContent === (value["description"])){
+            document.getElementById("send").value = key;
+            document.getElementById("send").focus()
+            if(value["argsCount"] === 0){
+                if(value["optionalArgs"] === false){
+                    sendMessage()
+                }
+            }
+        }
     }
 }
 
@@ -97,7 +113,9 @@ document.getElementById("send").addEventListener("keydown", function(event) {
     }
 })
 
-
+/**
+ * Event listener for message search
+ */
 document.getElementById("insearch").addEventListener("input", function() {
     let value = document.getElementById("insearch").value
     app.clearMessagesDisplay()
@@ -107,23 +125,7 @@ document.getElementById("insearch").addEventListener("input", function() {
     }
 })
 
-/**
- * Public function when help element is clicked
- * @param event Click event
- */
-window.helpClicked = function (event){
-    for(const [key, value] of Object.entries(app.commands.commandsList)){
-        if(value !== "" && event.target.textContent === (value["description"])){
-            document.getElementById("send").value = key;
-            document.getElementById("send").focus()
-            if(value["argsCount"] === 0){
-                if(value["optionalArgs"] === false){
-                    sendMessage()
-                }
-            }
-        }
-    }
-}
+
 
 // Display command help:
 for(const [, value] of Object.entries(app.commands.commandsList)){
