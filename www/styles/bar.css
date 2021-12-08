@@ -1,7 +1,6 @@
 #bar {
 	flex-flow: row;
 	align-items: center;
-	/*box-shadow: 0 5px 5px black;*/
 }
 h1 {
 	flex: 1 auto;
@@ -10,7 +9,7 @@ h1 {
 }
 #search_zone {
 	display: flex;
-	align-items: stretch;
+	height: 35%;
 }
 #button_search {
 	background: url(../image/search-solid.svg) no-repeat center;
