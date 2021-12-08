@@ -177,6 +177,7 @@ class Commands{
     backgroundCommand(args){
         document.getElementById("help").style.background = args[0];
         document.getElementById("chatbox").style.background = args[0];
+        document.getElementById("chat").style.background = args[0];
         this.app.sendBotMessage("Le background a été changé par: " + args[0])
         return 0;
     }
@@ -233,6 +234,7 @@ class Commands{
         document.getElementById("chatbox").style.background = "";
         document.getElementById("chat").style.color = "";
         document.getElementById("chat").style.fontSize = "";
+        document.getElementById("chat").style.background = "";
 
         let elements = document.getElementsByClassName("message");
         this.app.messageBackground = ""
@@ -242,8 +244,6 @@ class Commands{
         this.app.sendBotMessage("La mise en forme a été réinitialisé")
         return 0;
     }
-
-
 }
 
 export {Commands};
