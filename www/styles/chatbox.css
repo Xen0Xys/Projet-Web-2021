@@ -22,7 +22,7 @@ button {
 	border-radius: 15px 15px 5px 5px;
 }
 #chat {
-	z-index: 1;
+	z-index: 9999;
 	flex-direction: column;
 	overflow: auto;
 	padding-top: 20px;
