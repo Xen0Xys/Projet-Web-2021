@@ -134,7 +134,12 @@ class Commands{
     }
     testCasesCommand() {
         let tests = new Tests(this);
-        tests.test();
+        let result = tests.test();
+        if(result === 0){
+            this.app.sendBotMessage("All commands are ok!")
+        }else{
+            this.app.sendBotMessage("Command with id " + result + " fail!")
+        }
     }
 
     /**

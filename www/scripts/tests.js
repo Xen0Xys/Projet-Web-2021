@@ -35,6 +35,7 @@ class Tests{
         if(this.commands.messageBackgroundCommand([getRandomHex()]) !== 0){
             return 7;
         }
+        return 0;
     }
 }
 
